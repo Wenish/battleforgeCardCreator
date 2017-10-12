@@ -17,10 +17,11 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
-    <el-button @click="visible = true">Button</el-button>
+    <el-button @click="visible = true">Awesome Button</el-button>
     <el-dialog v-model="visible" title="Hello world">
       <p>Try Element</p>
     </el-dialog>
+    <Test></Test>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ console.log(Test);
 
 export default {
   name: 'hello',
+  components: { Test },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
