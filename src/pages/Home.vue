@@ -17,15 +17,24 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+    <el-button @click="visible = true">Button</el-button>
+    <el-dialog v-model="visible" title="Hello world">
+      <p>Try Element</p>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import Test from '@/components/Test'
+
+console.log(Test);
+
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      visible: false
     }
   }
 }
