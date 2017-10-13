@@ -3,7 +3,6 @@
 
 <div class="line"></div>
     <Navbar></Navbar>
-    <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
 </template>
