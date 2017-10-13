@@ -3,7 +3,8 @@
     <div class="card-background"></div>
     <div class="card-img"></div>
     <div class="card-frame" :class="cardColor"></div>
-    <div class=""></div>
+    <div class="card-icon-damage"></div>
+    <div class="card-icon-health"></div>
     <div class="card-name">{{ cardName }}</div>
     <div class="card-cost"><span>{{ cardCost }}</span></div>
     <div class="card-attack-dmg"><span>{{ cardAttackDmg }}</span></div>
