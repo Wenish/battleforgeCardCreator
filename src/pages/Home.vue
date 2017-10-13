@@ -1,10 +1,11 @@
 <template>
   <div class="page-container">
+    <CardSettings></CardSettings>
+    <BfCard></BfCard>
     <el-button @click="visible = true">Awesome Button</el-button>
     <el-dialog v-model="visible" title="Hello world">
       <p>Try Element</p>
     </el-dialog>
-    <Test></Test>
     <i class="el-icon-edit"></i>
     <i class="el-icon-share"></i>
     <i class="el-icon-delete"></i>
@@ -12,11 +13,15 @@
 </template>
 
 <script>
-import Test from '@/components/Test'
+import CardSettings from '@/components/CardSettings'
+import BfCard from '@/components/BfCard'
 
 export default {
-  name: 'hello',
-  components: { Test },
+  name: 'home',
+  components: {
+    CardSettings,
+    BfCard
+  },
   data () {
     return {
       visible: false
@@ -28,6 +33,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .page-container{
-
+  width: 500px;
+  margin: auto;
 }
 </style>
