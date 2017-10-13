@@ -32,6 +32,10 @@ var cardColors = [
   'shadowNatureFrost'
 ]
 
+var iconDamages = [
+
+]
+
 export default {
   name: 'bfCard',
   data () {
@@ -39,7 +43,7 @@ export default {
       cardColor: cardColors[15],
       cardName: 'Blunt Obama',
       cardCost: 420,
-      cardDamageType: 'rm',
+      cardDamageType: 'ml',
       cardDamage: 2000,
       cardHealthType: 'hpxl',
       cardHealth: 4000
@@ -604,6 +608,9 @@ export default {
   background-image: url('../assets/icon-damage/shadowNature/spec.png');
 }
 /* shadowNatureFrost Damage */
+.card-icon-damage.shadowNatureFrost {
+  bottom: 3.5px;
+}
 .card-icon-damage.shadowNatureFrost.ml {
   background-image: url('../assets/icon-damage/shadowNatureFrost/ml.png');
 }
