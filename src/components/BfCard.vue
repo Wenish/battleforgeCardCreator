@@ -29,6 +29,14 @@
         </el-option>
       </el-select>
       <el-input-number v-model="cardHealth" :min="0" :max="9999"></el-input-number>
+      <el-select v-model="editionSymbol" clearable placeholder="Select">
+        <el-option
+          v-for="item in editionSymbols"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     </div>
     <div class="card-container">
       <div class="card-background"></div>
@@ -40,6 +48,7 @@
       <div class="card-cost"><span v-if="cardCost">{{ cardCost }}</span></div>
       <div class="card-attack-dmg"><span v-if="cardDamage">{{ cardDamage }}</span></div>
       <div class="card-health"><span v-if="cardHealth">{{ cardHealth }}</span></div>
+      <div class="card-edition-symbol" :class="editionSymbol"></div>
     </div>
   </div>
 </template>
@@ -150,6 +159,58 @@ var cardHealthTypes = [
   }
 ]
 
+var editionSymbols = [
+  {
+    value: 'amii_common',
+    label: 'Amii Common'
+  }, {
+    value: 'amii_uncommon',
+    label: 'Amii Uncommon'
+  }, {
+    value: 'amii_rare',
+    label: 'Amii Rare'
+  }, {
+    value: 'amii_ultra_rare',
+    label: 'Amii ultra Rare'
+  }, {
+    value: 'lostsouls_common',
+    label: 'Lostsouls Common'
+  }, {
+    value: 'lostsouls_uncommon',
+    label: 'Lostsouls Uncommon'
+  }, {
+    value: 'lostsouls_rare',
+    label: 'Lostsouls Rare'
+  }, {
+    value: 'lostsouls_ultra_rare',
+    label: 'Lostsouls ultra Rare'
+  }, {
+    value: 'renegade_common',
+    label: 'Renegade Common'
+  }, {
+    value: 'renegade_uncommon',
+    label: 'Renegade Uncommon'
+  }, {
+    value: 'renegade_rare',
+    label: 'Renegade Rare'
+  }, {
+    value: 'renegade_ultra_rare',
+    label: 'Renegade ultra Rare'
+  }, {
+    value: 'twilight_common',
+    label: 'Twilight Common'
+  }, {
+    value: 'twilight_uncommon',
+    label: 'Twilight Uncommon'
+  }, {
+    value: 'twilight_rare',
+    label: 'Twilight Rare'
+  }, {
+    value: 'twilight_ultra_rare',
+    label: 'Twilight ultra Rare'
+  }
+]
+
 export default {
   name: 'bfCard',
   data () {
@@ -163,7 +224,9 @@ export default {
       cardDamage: 0,
       cardHealthTypes: cardHealthTypes,
       cardHealthType: '',
-      cardHealth: 0
+      cardHealth: 0,
+      editionSymbols: editionSymbols,
+      editionSymbol: ''
     }
   }
 }
@@ -1074,5 +1137,67 @@ export default {
   bottom: 12px;
   right: 76px;
   font-size: 20px;
+}
+
+.card-edition-symbol {
+  bottom: 4px;
+  right: 6px;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.card-edition-symbol.amii_common {
+  background-image: url('../assets/edition-symbols/amii_common.png');
+}
+.card-edition-symbol.amii_rare {
+  background-image: url('../assets/edition-symbols/amii_rare.png');
+}
+.card-edition-symbol.amii_ultra_rare {
+  background-image: url('../assets/edition-symbols/amii_ultra_rare.png');
+}
+.card-edition-symbol.amii_uncommon {
+  background-image: url('../assets/edition-symbols/amii_uncommon.png');
+}
+
+.card-edition-symbol.lostsouls_common {
+  background-image: url('../assets/edition-symbols/lostsouls_common.png');
+}
+.card-edition-symbol.lostsouls_rare {
+  background-image: url('../assets/edition-symbols/lostsouls_rare.png');
+}
+.card-edition-symbol.lostsouls_ultra_rare {
+  background-image: url('../assets/edition-symbols/lostsouls_ultra_rare.png');
+}
+.card-edition-symbol.lostsouls_uncommon {
+  background-image: url('../assets/edition-symbols/lostsouls_uncommon.png');
+}
+
+.card-edition-symbol.renegade_common {
+  background-image: url('../assets/edition-symbols/renegade_common.png');
+}
+.card-edition-symbol.renegade_rare {
+  background-image: url('../assets/edition-symbols/renegade_rare.png');
+}
+.card-edition-symbol.renegade_ultra_rare {
+  background-image: url('../assets/edition-symbols/renegade_ultra_rare.png');
+}
+.card-edition-symbol.renegade_uncommon {
+  background-image: url('../assets/edition-symbols/renegade_uncommon.png');
+}
+
+.card-edition-symbol.twilight_common {
+  background-image: url('../assets/edition-symbols/twilight_common.png');
+}
+.card-edition-symbol.twilight_rare {
+  background-image: url('../assets/edition-symbols/twilight_rare.png');
+}
+.card-edition-symbol.twilight_ultra_rare {
+  background-image: url('../assets/edition-symbols/twilight_ultra_rare.png');
+}
+.card-edition-symbol.twilight_uncommon {
+  background-image: url('../assets/edition-symbols/twilight_uncommon.png');
 }
 </style>
