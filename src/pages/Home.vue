@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="page-container">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -22,13 +22,14 @@
       <p>Try Element</p>
     </el-dialog>
     <Test></Test>
+    <i class="el-icon-edit"></i>
+    <i class="el-icon-share"></i>
+    <i class="el-icon-delete"></i>
   </div>
 </template>
 
 <script>
 import Test from '@/components/Test'
-
-console.log(Test);
 
 export default {
   name: 'hello',
@@ -44,21 +45,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+.page-container{
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
 }
 </style>
