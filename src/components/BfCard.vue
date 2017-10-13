@@ -102,29 +102,29 @@ var cardColors = [
 
 var cardDamageTypes = [
   {
-    value: 'ml',
-    label: 'ML'
+   value: 'ms',
+   label: 'Melee S'
   }, {
     value: 'mm',
-    label: 'MM'
+    label: 'Melee M'
   }, {
-    value: 'ms',
-    label: 'MS'
+    value: 'ml',
+    label: 'Melee L'
   }, {
     value: 'mxl',
-    label: 'MXL'
-  }, {
-    value: 'rl',
-    label: 'RL'
-  }, {
-    value: 'rm',
-    label: 'RM'
+    label: 'Melee XL'
   }, {
     value: 'rs',
-    label: 'RS'
+    label: 'Range S'
+  }, {
+    value: 'rm',
+    label: 'Range M'
+  }, {
+    value: 'rl',
+    label: 'Range L'
   }, {
     value: 'rxl',
-    label: 'RXL'
+    label: 'Range XL'
   }, {
     value: 'spec',
     label: 'Spec'
@@ -134,19 +134,19 @@ var cardDamageTypes = [
 var cardHealthTypes = [
   {
     value: 'hpBuilding',
-    label: 'hp building'
-  }, {
-    value: 'hpl',
-    label: 'hpl'
-  }, {
-    value: 'hpm',
-    label: 'hpm'
+    label: 'HP building'
   }, {
     value: 'hps',
-    label: 'hps'
+    label: 'HP S'
+  }, {
+    value: 'hpm',
+    label: 'HP M'
+  }, {
+    value: 'hpl',
+    label: 'HP L'
   }, {
     value: 'hpxl',
-    label: 'hpxl'
+    label: 'HP XL'
   }
 ]
 
@@ -199,7 +199,9 @@ export default {
   position: absolute;
   width: 256px;
   height: 236px;
+  /*
   background: url('../assets/obamablunt.jpg');
+  */
   background-repeat: no-repeat;
   background-size: 100% 100%;
   top: 36px;
