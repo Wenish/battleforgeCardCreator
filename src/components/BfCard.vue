@@ -1,52 +1,169 @@
 <template>
-  <div class="card-container">
-    <div class="card-background"></div>
-    <div class="card-img"></div>
-    <div class="card-frame" :class="cardColor"></div>
-    <div class="card-icon-damage" :class="[cardColor, cardDamageType]"></div>
-    <div class="card-icon-health" :class="[cardColor, cardHealthType]"></div>
-    <div class="card-name">{{ cardName }}</div>
-    <div class="card-cost"><span>{{ cardCost }}</span></div>
-    <div class="card-attack-dmg"><span>{{ cardDamage }}</span></div>
-    <div class="card-health"><span>{{ cardHealth }}</span></div>
+  <div>
+    <div class="card-settings">
+      <el-select v-model="cardColor" placeholder="Select">
+        <el-option
+          v-for="item in cardColors"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-input placeholder="Card Name" v-model="cardName"></el-input>
+      <el-input-number v-model="cardCost" :min="0" :max="9999"></el-input-number>
+      <el-select v-model="cardDamageType" clearable placeholder="Select">
+        <el-option
+          v-for="item in cardDamageTypes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-input-number v-model="cardDamage" :min="0" :max="9999"></el-input-number>
+      <el-select v-model="cardHealthType" clearable placeholder="Select">
+        <el-option
+          v-for="item in cardHealthTypes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-input-number v-model="cardHealth" :min="0" :max="9999"></el-input-number>
+    </div>
+    <div class="card-container">
+      <div class="card-background"></div>
+      <div class="card-img"></div>
+      <div class="card-frame" :class="cardColor"></div>
+      <div class="card-icon-damage" :class="[cardColor, cardDamageType]"></div>
+      <div class="card-icon-health" :class="[cardColor, cardHealthType]"></div>
+      <div class="card-name">{{ cardName }}</div>
+      <div class="card-cost"><span v-if="cardCost">{{ cardCost }}</span></div>
+      <div class="card-attack-dmg"><span v-if="cardDamage">{{ cardDamage }}</span></div>
+      <div class="card-health"><span v-if="cardHealth">{{ cardHealth }}</span></div>
+    </div>
   </div>
 </template>
 
 <script>
 var cardColors = [
-  'allColour',
-  'fire',
-  'fireFrost',
-  'fireNature',
-  'fireNatureFrost',
-  'fireShadow',
-  'fireShadowFrost',
-  'fireShadowNature',
-  'frost',
-  'legendary',
-  'nature',
-  'natureFrost',
-  'shadow',
-  'shadowFrost',
-  'shadowNature',
-  'shadowNatureFrost'
+  {
+    value: 'blank',
+    label: 'blank'
+  }, {
+    value: 'allColour',
+    label: 'all colour'
+  }, {
+    value: 'fire',
+    label: 'fire'
+  }, {
+    value: 'fireFrost',
+    label: 'fireFrost'
+  }, {
+    value: 'fireNature',
+    label: 'fireNature'
+  }, {
+    value: 'fireNatureFrost',
+    label: 'fireNatureFrost'
+  }, {
+    value: 'fireShadow',
+    label: 'fireShadow'
+  }, {
+    value: 'fireShadowFrost',
+    label: 'fireShadowFrost'
+  }, {
+    value: 'fireShadowNature',
+    label: 'fireShadowNature'
+  }, {
+    value: 'frost',
+    label: 'frost'
+  }, {
+    value: 'legendary',
+    label: 'legendary'
+  }, {
+    value: 'nature',
+    label: 'nature'
+  }, {
+    value: 'natureFrost',
+    label: 'natureFrost'
+  }, {
+    value: 'shadow',
+    label: 'shadow'
+  }, {
+    value: 'shadowFrost',
+    label: 'shadowFrost'
+  }, {
+    value: 'shadowNature',
+    label: 'shadowNature'
+  }, {
+    value: 'shadowNatureFrost',
+    label: 'shadowNatureFrost'
+  }
 ]
 
-var iconDamages = [
+var cardDamageTypes = [
+  {
+    value: 'ml',
+    label: 'ML'
+  }, {
+    value: 'mm',
+    label: 'MM'
+  }, {
+    value: 'ms',
+    label: 'MS'
+  }, {
+    value: 'mxl',
+    label: 'MXL'
+  }, {
+    value: 'rl',
+    label: 'RL'
+  }, {
+    value: 'rm',
+    label: 'RM'
+  }, {
+    value: 'rs',
+    label: 'RS'
+  }, {
+    value: 'rxl',
+    label: 'RXL'
+  }, {
+    value: 'spec',
+    label: 'Spec'
+  }
+]
 
+var cardHealthTypes = [
+  {
+    value: 'hpBuilding',
+    label: 'hp building'
+  }, {
+    value: 'hpl',
+    label: 'hpl'
+  }, {
+    value: 'hpm',
+    label: 'hpm'
+  }, {
+    value: 'hps',
+    label: 'hps'
+  }, {
+    value: 'hpxl',
+    label: 'hpxl'
+  }
 ]
 
 export default {
   name: 'bfCard',
   data () {
     return {
-      cardColor: cardColors[15],
-      cardName: 'Blunt Obama',
-      cardCost: 420,
-      cardDamageType: 'ml',
-      cardDamage: 2000,
-      cardHealthType: 'hpxl',
-      cardHealth: 4000
+      cardColors: cardColors,
+      cardColor: 'blank',
+      cardName: '',
+      cardCost: 0,
+      cardDamageTypes: cardDamageTypes,
+      cardDamageType: '',
+      cardDamage: 0,
+      cardHealthTypes: cardHealthTypes,
+      cardHealthType: '',
+      cardHealth: 0
     }
   }
 }
