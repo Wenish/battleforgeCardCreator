@@ -461,7 +461,7 @@ export default {
   background-repeat: no-repeat;
 }
 .card-orb-1.neutral, .card-orb-2.neutral, .card-orb-3.neutral, .card-orb-4.neutral {
-  background-image: url('../assets/orbs/ui_card_250_token_hole_0.png');
+  background-image: url('../assets/orbs/ui_card_250_token_hole.png');
 }
 .card-orb-1.fire, .card-orb-2.fire, .card-orb-3.fire, .card-orb-4.fire {
   background-image: url('../assets/orbs/ui_card_250_token_fire.png');
@@ -477,7 +477,7 @@ export default {
 }
 .card-orb-1 {
   top: 44px;
-  right: 7px;
+  right: 8px;
 }
 .card-orb-2 {
   top: 48px;
@@ -489,7 +489,7 @@ export default {
 }
 .card-orb-4 {
   top: 44px;
-  right: 52px;
+  right: 51px;
 }
 
 /* Diffrent Damage icons */
@@ -1269,20 +1269,22 @@ export default {
 }
 
 .card-attack-dmg {
-    color: white;
-    position: absolute;
-    bottom: 13px;
-    left: 52px;
-    font-size: 20px;
-    text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+  color: white;
+  position: absolute;
+  bottom: 14px;
+  left: 53px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
 .card-health {
   color: white;
   position: absolute;
-  bottom: 13px;
-  right: 84px;
+  bottom: 14px;
+  right: 78px;
   font-size: 20px;
+  letter-spacing: 1px;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
