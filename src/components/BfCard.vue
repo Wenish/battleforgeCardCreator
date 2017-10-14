@@ -404,6 +404,7 @@ export default {
   word-break: break-all;
   max-height: 19px;
   overflow: hidden;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
 }
 
 .card-affinity-tokenslot {
@@ -499,6 +500,7 @@ export default {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-bottom-left-radius: 10px;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
 }
 /* legendary Damage */
 .card-icon-damage.neutral.ml {
@@ -1250,6 +1252,7 @@ export default {
   max-width: 190px;
   overflow: hidden;
   word-break: break-all;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
 }
 
 .card-cost {
@@ -1258,6 +1261,7 @@ export default {
   top: 19px;
   right: 19px;
   width: 36px;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
 }
 
 .card-attack-dmg {
@@ -1266,6 +1270,7 @@ export default {
     bottom: 12px;
     left: 62px;
     font-size: 20px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
 }
 
 .card-health {
@@ -1274,6 +1279,7 @@ export default {
   bottom: 12px;
   right: 76px;
   font-size: 20px;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
 }
 
 .card-edition-symbol {
