@@ -3,15 +3,15 @@
     <div class="card-container">
       <div class="card-background"></div>
       <div class="card-img"></div>
-      <div class="card-frame" :class="cardColor"></div>
+      <div class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
       <div class="card-affinity-tokenslot" :class="affinity"></div>
       <div class="card-affinity-orb" :class="affinity"></div>
       <div class="card-orb-1" :class="orbType1"></div>
       <div class="card-orb-2" :class="orbType2"></div>
       <div class="card-orb-3" :class="orbType3"></div>
       <div class="card-orb-4" :class="orbType4"></div>
-      <div class="card-icon-damage" :class="[cardColor, cardDamageType]"></div>
-      <div class="card-icon-health" :class="[cardColor, cardHealthType]"></div>
+      <div class="card-icon-damage" :class="[orbType1, orbType2, orbType3, orbType4, cardDamageType]"></div>
+      <div class="card-icon-health" :class="[orbType1, orbType2, orbType3, orbType4, cardHealthType]"></div>
       <div class="card-name">{{ cardName }}</div>
       <div class="card-cost"><span v-if="cardCost">{{ cardCost }}</span></div>
       <div class="card-attack-dmg"><span v-if="cardDamage">{{ cardDamage }}</span></div>
@@ -19,14 +19,6 @@
       <div class="card-edition-symbol" :class="editionSymbol"></div>
     </div>
       <div class="card-settings">
-        <el-select v-model="cardColor" placeholder="Select">
-          <el-option
-            v-for="item in cardColors"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
         <el-input placeholder="Card Name" v-model="cardName"></el-input>
         <el-input-number v-model="cardCost" :min="0" :max="9999"></el-input-number>
         <el-select v-model="cardDamageType" clearable placeholder="Select">
@@ -100,61 +92,6 @@
 </template>
 
 <script>
-var cardColors = [
-  {
-    value: 'blank',
-    label: 'blank'
-  }, {
-    value: 'allColour',
-    label: 'all colour'
-  }, {
-    value: 'fire',
-    label: 'fire'
-  }, {
-    value: 'fireFrost',
-    label: 'fireFrost'
-  }, {
-    value: 'fireNature',
-    label: 'fireNature'
-  }, {
-    value: 'fireNatureFrost',
-    label: 'fireNatureFrost'
-  }, {
-    value: 'fireShadow',
-    label: 'fireShadow'
-  }, {
-    value: 'fireShadowFrost',
-    label: 'fireShadowFrost'
-  }, {
-    value: 'fireShadowNature',
-    label: 'fireShadowNature'
-  }, {
-    value: 'frost',
-    label: 'frost'
-  }, {
-    value: 'legendary',
-    label: 'legendary'
-  }, {
-    value: 'nature',
-    label: 'nature'
-  }, {
-    value: 'natureFrost',
-    label: 'natureFrost'
-  }, {
-    value: 'shadow',
-    label: 'shadow'
-  }, {
-    value: 'shadowFrost',
-    label: 'shadowFrost'
-  }, {
-    value: 'shadowNature',
-    label: 'shadowNature'
-  }, {
-    value: 'shadowNatureFrost',
-    label: 'shadowNatureFrost'
-  }
-]
-
 var orbTypes = [
   {
     value: 'neutral',
@@ -296,8 +233,6 @@ export default {
   name: 'bfCard',
   data () {
     return {
-      cardColors: cardColors,
-      cardColor: 'blank',
       orbTypes: orbTypes,
       orbType1: '',
       orbType2: '',
@@ -373,57 +308,55 @@ export default {
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 10px;
-}
-.card-frame.allColour {
-  background-image: url('../assets/frames/allColour.png');
-}
-.card-frame.blank {
   background-image: url('../assets/frames/blank.png');
+}
+.card-frame.neutral {
+  background-image: url('../assets/frames/legendary.png');
 }
 .card-frame.fire {
   background-image: url('../assets/frames/fire.png');
 }
-.card-frame.fireFrost {
-  background-image: url('../assets/frames/fireFrost.png');
-}
-.card-frame.fireNature {
-  background-image: url('../assets/frames/fireNature.png');
-}
-.card-frame.fireNatureFrost {
-  background-image: url('../assets/frames/fireNatureFrost.png');
-}
-.card-frame.fireShadow {
-  background-image: url('../assets/frames/fireShadow.png');
-}
-.card-frame.fireShadowFrost {
-  background-image: url('../assets/frames/fireShadowFrost.png');
-}
-.card-frame.fireShadowNature {
-  background-image: url('../assets/frames/fireShadowNature.png');
-}
 .card-frame.frost {
   background-image: url('../assets/frames/frost.png');
-}
-.card-frame.legendary {
-  background-image: url('../assets/frames/legendary.png');
 }
 .card-frame.nature {
   background-image: url('../assets/frames/nature.png');
 }
-.card-frame.natureFrost {
-  background-image: url('../assets/frames/natureFrost.png');
-}
 .card-frame.shadow {
   background-image: url('../assets/frames/shadow.png');
 }
-.card-frame.shadowFrost {
+.card-frame.fire.frost {
+  background-image: url('../assets/frames/fireFrost.png');
+}
+.card-frame.fire.nature {
+  background-image: url('../assets/frames/fireNature.png');
+}
+.card-frame.fire.shadow {
+  background-image: url('../assets/frames/fireShadow.png');
+}
+.card-frame.nature.frost {
+  background-image: url('../assets/frames/natureFrost.png');
+}
+.card-frame.shadow.frost {
   background-image: url('../assets/frames/shadowFrost.png');
 }
-.card-frame.shadowNature {
+.card-frame.shadow.nature {
   background-image: url('../assets/frames/shadowNature.png');
 }
-.card-frame.shadowNatureFrost {
+.card-frame.fire.nature.frost {
+  background-image: url('../assets/frames/fireNatureFrost.png');
+}
+.card-frame.fire.shadow.frost {
+  background-image: url('../assets/frames/fireShadowFrost.png');
+}
+.card-frame.fire.shadow.nature {
+  background-image: url('../assets/frames/fireShadowNature.png');
+}
+.card-frame.shadow.nature.frost {
   background-image: url('../assets/frames/shadowNatureFrost.png');
+}
+.card-frame.fire.frost.nature.shadow {
+  background-image: url('../assets/frames/allColour.png');
 }
 
 .card-affinity-tokenslot {
@@ -520,33 +453,33 @@ export default {
   background-repeat: no-repeat;
   border-bottom-left-radius: 10px;
 }
-/* All Colour Damage */
-.card-icon-damage.allColour.ml {
-  background-image: url('../assets/icon-damage/allColour/ml.png');
+/* legendary Damage */
+.card-icon-damage.neutral.ml {
+  background-image: url('../assets/icon-damage/legendary/ml.png');
 }
-.card-icon-damage.allColour.mm {
-  background-image: url('../assets/icon-damage/allColour/mm.png');
+.card-icon-damage.neutral.mm {
+  background-image: url('../assets/icon-damage/legendary/mm.png');
 }
-.card-icon-damage.allColour.ms {
-  background-image: url('../assets/icon-damage/allColour/ms.png');
+.card-icon-damage.neutral.ms {
+  background-image: url('../assets/icon-damage/legendary/ms.png');
 }
-.card-icon-damage.allColour.mxl {
-  background-image: url('../assets/icon-damage/allColour/mxl.png');
+.card-icon-damage.neutral.mxl {
+  background-image: url('../assets/icon-damage/legendary/mxl.png');
 }
-.card-icon-damage.allColour.rl {
-  background-image: url('../assets/icon-damage/allColour/rl.png');
+.card-icon-damage.neutral.rl {
+  background-image: url('../assets/icon-damage/legendary/rl.png');
 }
-.card-icon-damage.allColour.rm {
-  background-image: url('../assets/icon-damage/allColour/rm.png');
+.card-icon-damage.neutral.rm {
+  background-image: url('../assets/icon-damage/legendary/rm.png');
 }
-.card-icon-damage.allColour.rs {
-  background-image: url('../assets/icon-damage/allColour/rs.png');
+.card-icon-damage.neutral.rs {
+  background-image: url('../assets/icon-damage/legendary/rs.png');
 }
-.card-icon-damage.allColour.rxl {
-  background-image: url('../assets/icon-damage/allColour/rxl.png');
+.card-icon-damage.neutral.rxl {
+  background-image: url('../assets/icon-damage/legendary/rxl.png');
 }
-.card-icon-damage.allColour.spec {
-  background-image: url('../assets/icon-damage/allColour/spec.png');
+.card-icon-damage.neutral.spec {
+  background-image: url('../assets/icon-damage/legendary/spec.png');
 }
 /* fire Damage */
 .card-icon-damage.fire.ml {
@@ -576,202 +509,6 @@ export default {
 .card-icon-damage.fire.spec {
   background-image: url('../assets/icon-damage/fire/spec.png');
 }
-/* fireFrost Damage */
-.card-icon-damage.fireFrost.ml {
-  background-image: url('../assets/icon-damage/fireFrost/ml.png');
-}
-.card-icon-damage.fireFrost.mm {
-  background-image: url('../assets/icon-damage/fireFrost/mm.png');
-}
-.card-icon-damage.fireFrost.ms {
-  background-image: url('../assets/icon-damage/fireFrost/ms.png');
-}
-.card-icon-damage.fireFrost.mxl {
-  background-image: url('../assets/icon-damage/fireFrost/mxl.png');
-}
-.card-icon-damage.fireFrost.rl {
-  background-image: url('../assets/icon-damage/fireFrost/rl.png');
-}
-.card-icon-damage.fireFrost.rm {
-  background-image: url('../assets/icon-damage/fireFrost/rm.png');
-}
-.card-icon-damage.fireFrost.rs {
-  background-image: url('../assets/icon-damage/fireFrost/rs.png');
-}
-.card-icon-damage.fireFrost.rxl {
-  background-image: url('../assets/icon-damage/fireFrost/rxl.png');
-}
-.card-icon-damage.fireFrost.spec {
-  background-image: url('../assets/icon-damage/fireFrost/spec.png');
-}
-/* fireFrost Damage */
-.card-icon-damage.fireFrost.ml {
-  background-image: url('../assets/icon-damage/fireFrost/ml.png');
-}
-.card-icon-damage.fireFrost.mm {
-  background-image: url('../assets/icon-damage/fireFrost/mm.png');
-}
-.card-icon-damage.fireFrost.ms {
-  background-image: url('../assets/icon-damage/fireFrost/ms.png');
-}
-.card-icon-damage.fireFrost.mxl {
-  background-image: url('../assets/icon-damage/fireFrost/mxl.png');
-}
-.card-icon-damage.fireFrost.rl {
-  background-image: url('../assets/icon-damage/fireFrost/rl.png');
-}
-.card-icon-damage.fireFrost.rm {
-  background-image: url('../assets/icon-damage/fireFrost/rm.png');
-}
-.card-icon-damage.fireFrost.rs {
-  background-image: url('../assets/icon-damage/fireFrost/rs.png');
-}
-.card-icon-damage.fireFrost.rxl {
-  background-image: url('../assets/icon-damage/fireFrost/rxl.png');
-}
-.card-icon-damage.fireFrost.spec {
-  background-image: url('../assets/icon-damage/fireFrost/spec.png');
-}
-/* fireNature Damage */
-.card-icon-damage.fireNature.ml {
-  background-image: url('../assets/icon-damage/fireNature/ml.png');
-}
-.card-icon-damage.fireNature.mm {
-  background-image: url('../assets/icon-damage/fireNature/mm.png');
-}
-.card-icon-damage.fireNature.ms {
-  background-image: url('../assets/icon-damage/fireNature/ms.png');
-}
-.card-icon-damage.fireNature.mxl {
-  background-image: url('../assets/icon-damage/fireNature/mxl.png');
-}
-.card-icon-damage.fireNature.rl {
-  background-image: url('../assets/icon-damage/fireNature/rl.png');
-}
-.card-icon-damage.fireNature.rm {
-  background-image: url('../assets/icon-damage/fireNature/rm.png');
-}
-.card-icon-damage.fireNature.rs {
-  background-image: url('../assets/icon-damage/fireNature/rs.png');
-}
-.card-icon-damage.fireNature.rxl {
-  background-image: url('../assets/icon-damage/fireNature/rxl.png');
-}
-.card-icon-damage.fireNature.spec {
-  background-image: url('../assets/icon-damage/fireNature/spec.png');
-}
-/* fireNatureFrost Damage */
-.card-icon-damage.fireNatureFrost.ml {
-  background-image: url('../assets/icon-damage/fireNatureFrost/ml.png');
-}
-.card-icon-damage.fireNatureFrost.mm {
-  background-image: url('../assets/icon-damage/fireNatureFrost/mm.png');
-}
-.card-icon-damage.fireNatureFrost.ms {
-  background-image: url('../assets/icon-damage/fireNatureFrost/ms.png');
-}
-.card-icon-damage.fireNatureFrost.mxl {
-  background-image: url('../assets/icon-damage/fireNatureFrost/mxl.png');
-}
-.card-icon-damage.fireNatureFrost.rl {
-  background-image: url('../assets/icon-damage/fireNatureFrost/rl.png');
-}
-.card-icon-damage.fireNatureFrost.rm {
-  background-image: url('../assets/icon-damage/fireNatureFrost/rm.png');
-}
-.card-icon-damage.fireNatureFrost.rs {
-  background-image: url('../assets/icon-damage/fireNatureFrost/rs.png');
-}
-.card-icon-damage.fireNatureFrost.rxl {
-  background-image: url('../assets/icon-damage/fireNatureFrost/rxl.png');
-}
-.card-icon-damage.fireNatureFrost.spec {
-  background-image: url('../assets/icon-damage/fireNatureFrost/spec.png');
-}
-/* fireShadow Damage */
-.card-icon-damage.fireShadow.ml {
-  background-image: url('../assets/icon-damage/fireShadow/ml.png');
-}
-.card-icon-damage.fireShadow.mm {
-  background-image: url('../assets/icon-damage/fireShadow/mm.png');
-}
-.card-icon-damage.fireShadow.ms {
-  background-image: url('../assets/icon-damage/fireShadow/ms.png');
-}
-.card-icon-damage.fireShadow.mxl {
-  background-image: url('../assets/icon-damage/fireShadow/mxl.png');
-}
-.card-icon-damage.fireShadow.rl {
-  background-image: url('../assets/icon-damage/fireShadow/rl.png');
-}
-.card-icon-damage.fireShadow.rm {
-  background-image: url('../assets/icon-damage/fireShadow/rm.png');
-}
-.card-icon-damage.fireShadow.rs {
-  background-image: url('../assets/icon-damage/fireShadow/rs.png');
-}
-.card-icon-damage.fireShadow.rxl {
-  background-image: url('../assets/icon-damage/fireShadow/rxl.png');
-}
-.card-icon-damage.fireShadow.spec {
-  background-image: url('../assets/icon-damage/fireShadow/spec.png');
-}
-/* fireShadowFrost Damage */
-.card-icon-damage.fireShadowFrost.ml {
-  background-image: url('../assets/icon-damage/fireShadowFrost/ml.png');
-}
-.card-icon-damage.fireShadowFrost.mm {
-  background-image: url('../assets/icon-damage/fireShadowFrost/mm.png');
-}
-.card-icon-damage.fireShadowFrost.ms {
-  background-image: url('../assets/icon-damage/fireShadowFrost/ms.png');
-}
-.card-icon-damage.fireShadowFrost.mxl {
-  background-image: url('../assets/icon-damage/fireShadowFrost/mxl.png');
-}
-.card-icon-damage.fireShadowFrost.rl {
-  background-image: url('../assets/icon-damage/fireShadowFrost/rl.png');
-}
-.card-icon-damage.fireShadowFrost.rm {
-  background-image: url('../assets/icon-damage/fireShadowFrost/rm.png');
-}
-.card-icon-damage.fireShadowFrost.rs {
-  background-image: url('../assets/icon-damage/fireShadowFrost/rs.png');
-}
-.card-icon-damage.fireShadowFrost.rxl {
-  background-image: url('../assets/icon-damage/fireShadowFrost/rxl.png');
-}
-.card-icon-damage.fireShadowFrost.spec {
-  background-image: url('../assets/icon-damage/fireShadowFrost/spec.png');
-}
-/* fireShadowNature Damage */
-.card-icon-damage.fireShadowNature.ml {
-  background-image: url('../assets/icon-damage/fireShadowNature/ml.png');
-}
-.card-icon-damage.fireShadowNature.mm {
-  background-image: url('../assets/icon-damage/fireShadowNature/mm.png');
-}
-.card-icon-damage.fireShadowNature.ms {
-  background-image: url('../assets/icon-damage/fireShadowNature/ms.png');
-}
-.card-icon-damage.fireShadowNature.mxl {
-  background-image: url('../assets/icon-damage/fireShadowNature/mxl.png');
-}
-.card-icon-damage.fireShadowNature.rl {
-  background-image: url('../assets/icon-damage/fireShadowNature/rl.png');
-}
-.card-icon-damage.fireShadowNature.rm {
-  background-image: url('../assets/icon-damage/fireShadowNature/rm.png');
-}
-.card-icon-damage.fireShadowNature.rs {
-  background-image: url('../assets/icon-damage/fireShadowNature/rs.png');
-}
-.card-icon-damage.fireShadowNature.rxl {
-  background-image: url('../assets/icon-damage/fireShadowNature/rxl.png');
-}
-.card-icon-damage.fireShadowNature.spec {
-  background-image: url('../assets/icon-damage/fireShadowNature/spec.png');
-}
 /* frost Damage */
 .card-icon-damage.frost.ml {
   background-image: url('../assets/icon-damage/frost/ml.png');
@@ -799,34 +536,6 @@ export default {
 }
 .card-icon-damage.frost.spec {
   background-image: url('../assets/icon-damage/frost/spec.png');
-}
-/* legendary Damage */
-.card-icon-damage.legendary.ml {
-  background-image: url('../assets/icon-damage/legendary/ml.png');
-}
-.card-icon-damage.legendary.mm {
-  background-image: url('../assets/icon-damage/legendary/mm.png');
-}
-.card-icon-damage.legendary.ms {
-  background-image: url('../assets/icon-damage/legendary/ms.png');
-}
-.card-icon-damage.legendary.mxl {
-  background-image: url('../assets/icon-damage/legendary/mxl.png');
-}
-.card-icon-damage.legendary.rl {
-  background-image: url('../assets/icon-damage/legendary/rl.png');
-}
-.card-icon-damage.legendary.rm {
-  background-image: url('../assets/icon-damage/legendary/rm.png');
-}
-.card-icon-damage.legendary.rs {
-  background-image: url('../assets/icon-damage/legendary/rs.png');
-}
-.card-icon-damage.legendary.rxl {
-  background-image: url('../assets/icon-damage/legendary/rxl.png');
-}
-.card-icon-damage.legendary.spec {
-  background-image: url('../assets/icon-damage/legendary/spec.png');
 }
 /* nature Damage */
 .card-icon-damage.nature.ml {
@@ -856,34 +565,6 @@ export default {
 .card-icon-damage.nature.spec {
   background-image: url('../assets/icon-damage/nature/spec.png');
 }
-/* natureFrost Damage */
-.card-icon-damage.natureFrost.ml {
-  background-image: url('../assets/icon-damage/natureFrost/ml.png');
-}
-.card-icon-damage.natureFrost.mm {
-  background-image: url('../assets/icon-damage/natureFrost/mm.png');
-}
-.card-icon-damage.natureFrost.ms {
-  background-image: url('../assets/icon-damage/natureFrost/ms.png');
-}
-.card-icon-damage.natureFrost.mxl {
-  background-image: url('../assets/icon-damage/natureFrost/mxl.png');
-}
-.card-icon-damage.natureFrost.rl {
-  background-image: url('../assets/icon-damage/natureFrost/rl.png');
-}
-.card-icon-damage.natureFrost.rm {
-  background-image: url('../assets/icon-damage/natureFrost/rm.png');
-}
-.card-icon-damage.natureFrost.rs {
-  background-image: url('../assets/icon-damage/natureFrost/rs.png');
-}
-.card-icon-damage.natureFrost.rxl {
-  background-image: url('../assets/icon-damage/natureFrost/rxl.png');
-}
-.card-icon-damage.natureFrost.spec {
-  background-image: url('../assets/icon-damage/natureFrost/spec.png');
-}
 /* shadow Damage */
 .card-icon-damage.shadow.ml {
   background-image: url('../assets/icon-damage/shadow/ml.png');
@@ -912,92 +593,319 @@ export default {
 .card-icon-damage.shadow.spec {
   background-image: url('../assets/icon-damage/shadow/spec.png');
 }
+/* fireFrost Damage */
+.card-icon-damage.fire.frost.ml {
+  background-image: url('../assets/icon-damage/fireFrost/ml.png');
+}
+.card-icon-damage.fire.frost.mm {
+  background-image: url('../assets/icon-damage/fireFrost/mm.png');
+}
+.card-icon-damage.fire.frost.ms {
+  background-image: url('../assets/icon-damage/fireFrost/ms.png');
+}
+.card-icon-damage.fire.frost.mxl {
+  background-image: url('../assets/icon-damage/fireFrost/mxl.png');
+}
+.card-icon-damage.fire.frost.rl {
+  background-image: url('../assets/icon-damage/fireFrost/rl.png');
+}
+.card-icon-damage.fire.frost.rm {
+  background-image: url('../assets/icon-damage/fireFrost/rm.png');
+}
+.card-icon-damage.fire.frost.rs {
+  background-image: url('../assets/icon-damage/fireFrost/rs.png');
+}
+.card-icon-damage.fire.frost.rxl {
+  background-image: url('../assets/icon-damage/fireFrost/rxl.png');
+}
+.card-icon-damage.fire.frost.spec {
+  background-image: url('../assets/icon-damage/fireFrost/spec.png');
+}
+/* fireNature Damage */
+.card-icon-damage.fire.nature.ml {
+  background-image: url('../assets/icon-damage/fireNature/ml.png');
+}
+.card-icon-damage.fire.nature.mm {
+  background-image: url('../assets/icon-damage/fireNature/mm.png');
+}
+.card-icon-damage.fire.nature.ms {
+  background-image: url('../assets/icon-damage/fireNature/ms.png');
+}
+.card-icon-damage.fire.nature.mxl {
+  background-image: url('../assets/icon-damage/fireNature/mxl.png');
+}
+.card-icon-damage.fire.nature.rl {
+  background-image: url('../assets/icon-damage/fireNature/rl.png');
+}
+.card-icon-damage.fire.nature.rm {
+  background-image: url('../assets/icon-damage/fireNature/rm.png');
+}
+.card-icon-damage.fire.nature.rs {
+  background-image: url('../assets/icon-damage/fireNature/rs.png');
+}
+.card-icon-damage.fire.nature.rxl {
+  background-image: url('../assets/icon-damage/fireNature/rxl.png');
+}
+.card-icon-damage.fire.nature.spec {
+  background-image: url('../assets/icon-damage/fireNature/spec.png');
+}
+/* fireShadow Damage */
+.card-icon-damage.fire.shadow.ml {
+  background-image: url('../assets/icon-damage/fireShadow/ml.png');
+}
+.card-icon-damage.fire.shadow.mm {
+  background-image: url('../assets/icon-damage/fireShadow/mm.png');
+}
+.card-icon-damage.fire.shadow.ms {
+  background-image: url('../assets/icon-damage/fireShadow/ms.png');
+}
+.card-icon-damage.fire.shadow.mxl {
+  background-image: url('../assets/icon-damage/fireShadow/mxl.png');
+}
+.card-icon-damage.fire.shadow.rl {
+  background-image: url('../assets/icon-damage/fireShadow/rl.png');
+}
+.card-icon-damage.fire.shadow.rm {
+  background-image: url('../assets/icon-damage/fireShadow/rm.png');
+}
+.card-icon-damage.fire.shadow.rs {
+  background-image: url('../assets/icon-damage/fireShadow/rs.png');
+}
+.card-icon-damage.fire.shadow.rxl {
+  background-image: url('../assets/icon-damage/fireShadow/rxl.png');
+}
+.card-icon-damage.fire.shadow.spec {
+  background-image: url('../assets/icon-damage/fireShadow/spec.png');
+}
+/* natureFrost Damage */
+.card-icon-damage.nature.frost.ml {
+  background-image: url('../assets/icon-damage/natureFrost/ml.png');
+}
+.card-icon-damage.nature.frost.mm {
+  background-image: url('../assets/icon-damage/natureFrost/mm.png');
+}
+.card-icon-damage.nature.frost.ms {
+  background-image: url('../assets/icon-damage/natureFrost/ms.png');
+}
+.card-icon-damage.nature.frost.mxl {
+  background-image: url('../assets/icon-damage/natureFrost/mxl.png');
+}
+.card-icon-damage.nature.frost.rl {
+  background-image: url('../assets/icon-damage/natureFrost/rl.png');
+}
+.card-icon-damage.nature.frost.rm {
+  background-image: url('../assets/icon-damage/natureFrost/rm.png');
+}
+.card-icon-damage.nature.frost.rs {
+  background-image: url('../assets/icon-damage/natureFrost/rs.png');
+}
+.card-icon-damage.nature.frost.rxl {
+  background-image: url('../assets/icon-damage/natureFrost/rxl.png');
+}
+.card-icon-damage.nature.frost.spec {
+  background-image: url('../assets/icon-damage/natureFrost/spec.png');
+}
 /* shadowFrost Damage */
-.card-icon-damage.shadowFrost.ml {
+.card-icon-damage.shadow.frost.ml {
   background-image: url('../assets/icon-damage/shadowFrost/ml.png');
 }
-.card-icon-damage.shadowFrost.mm {
+.card-icon-damage.shadow.frost.mm {
   background-image: url('../assets/icon-damage/shadowFrost/mm.png');
 }
-.card-icon-damage.shadowFrost.ms {
+.card-icon-damage.shadow.frost.ms {
   background-image: url('../assets/icon-damage/shadowFrost/ms.png');
 }
-.card-icon-damage.shadowFrost.mxl {
+.card-icon-damage.shadow.frost.mxl {
   background-image: url('../assets/icon-damage/shadowFrost/mxl.png');
 }
-.card-icon-damage.shadowFrost.rl {
+.card-icon-damage.shadow.frost.rl {
   background-image: url('../assets/icon-damage/shadowFrost/rl.png');
 }
-.card-icon-damage.shadowFrost.rm {
+.card-icon-damage.shadow.frost.rm {
   background-image: url('../assets/icon-damage/shadowFrost/rm.png');
 }
-.card-icon-damage.shadowFrost.rs {
+.card-icon-damage.shadow.frost.rs {
   background-image: url('../assets/icon-damage/shadowFrost/rs.png');
 }
-.card-icon-damage.shadowFrost.rxl {
+.card-icon-damage.shadow.frost.rxl {
   background-image: url('../assets/icon-damage/shadowFrost/rxl.png');
 }
-.card-icon-damage.shadowFrost.spec {
+.card-icon-damage.shadow.frost.spec {
   background-image: url('../assets/icon-damage/shadowFrost/spec.png');
 }
 /* shadowNature Damage */
-.card-icon-damage.shadowNature.ml {
+.card-icon-damage.shadow.nature.ml {
   background-image: url('../assets/icon-damage/shadowNature/ml.png');
 }
-.card-icon-damage.shadowNature.mm {
+.card-icon-damage.shadow.nature.mm {
   background-image: url('../assets/icon-damage/shadowNature/mm.png');
 }
-.card-icon-damage.shadowNature.ms {
+.card-icon-damage.shadow.nature.ms {
   background-image: url('../assets/icon-damage/shadowNature/ms.png');
 }
-.card-icon-damage.shadowNature.mxl {
+.card-icon-damage.shadow.nature.mxl {
   background-image: url('../assets/icon-damage/shadowNature/mxl.png');
 }
-.card-icon-damage.shadowNature.rl {
+.card-icon-damage.shadow.nature.rl {
   background-image: url('../assets/icon-damage/shadowNature/rl.png');
 }
-.card-icon-damage.shadowNature.rm {
+.card-icon-damage.shadow.nature.rm {
   background-image: url('../assets/icon-damage/shadowNature/rm.png');
 }
-.card-icon-damage.shadowNature.rs {
+.card-icon-damage.shadow.nature.rs {
   background-image: url('../assets/icon-damage/shadowNature/rs.png');
 }
-.card-icon-damage.shadowNature.rxl {
+.card-icon-damage.shadow.nature.rxl {
   background-image: url('../assets/icon-damage/shadowNature/rxl.png');
 }
-.card-icon-damage.shadowNature.spec {
+.card-icon-damage.shadow.nature.spec {
   background-image: url('../assets/icon-damage/shadowNature/spec.png');
 }
+/* fireNatureFrost Damage */
+.card-icon-damage.fire.nature.frost.ml {
+  background-image: url('../assets/icon-damage/fireNatureFrost/ml.png');
+}
+.card-icon-damage.fire.nature.frost.mm {
+  background-image: url('../assets/icon-damage/fireNatureFrost/mm.png');
+}
+.card-icon-damage.fire.nature.frost.ms {
+  background-image: url('../assets/icon-damage/fireNatureFrost/ms.png');
+}
+.card-icon-damage.fire.nature.frost.mxl {
+  background-image: url('../assets/icon-damage/fireNatureFrost/mxl.png');
+}
+.card-icon-damage.fire.nature.frost.rl {
+  background-image: url('../assets/icon-damage/fireNatureFrost/rl.png');
+}
+.card-icon-damage.fire.nature.frost.rm {
+  background-image: url('../assets/icon-damage/fireNatureFrost/rm.png');
+}
+.card-icon-damage.fire.nature.frost.rs {
+  background-image: url('../assets/icon-damage/fireNatureFrost/rs.png');
+}
+.card-icon-damage.fire.nature.frost.rxl {
+  background-image: url('../assets/icon-damage/fireNatureFrost/rxl.png');
+}
+.card-icon-damage.fire.nature.frost.spec {
+  background-image: url('../assets/icon-damage/fireNatureFrost/spec.png');
+}
+/* fireShadowFrost Damage */
+.card-icon-damage.fire.shadow.frost.ml {
+  background-image: url('../assets/icon-damage/fireShadowFrost/ml.png');
+}
+.card-icon-damage.fire.shadow.frost.mm {
+  background-image: url('../assets/icon-damage/fireShadowFrost/mm.png');
+}
+.card-icon-damage.fire.shadow.frost.ms {
+  background-image: url('../assets/icon-damage/fireShadowFrost/ms.png');
+}
+.card-icon-damage.fire.shadow.frost.mxl {
+  background-image: url('../assets/icon-damage/fireShadowFrost/mxl.png');
+}
+.card-icon-damage.fire.shadow.frost.rl {
+  background-image: url('../assets/icon-damage/fireShadowFrost/rl.png');
+}
+.card-icon-damage.fire.shadow.frost.rm {
+  background-image: url('../assets/icon-damage/fireShadowFrost/rm.png');
+}
+.card-icon-damage.fire.shadow.frost.rs {
+  background-image: url('../assets/icon-damage/fireShadowFrost/rs.png');
+}
+.card-icon-damage.fire.shadow.frost.rxl {
+  background-image: url('../assets/icon-damage/fireShadowFrost/rxl.png');
+}
+.card-icon-damage.fire.shadow.frost.spec {
+  background-image: url('../assets/icon-damage/fireShadowFrost/spec.png');
+}
+/* fireShadowNature Damage */
+.card-icon-damage.fire.shadow.nature.ml {
+  background-image: url('../assets/icon-damage/fireShadowNature/ml.png');
+}
+.card-icon-damage.fire.shadow.nature.mm {
+  background-image: url('../assets/icon-damage/fireShadowNature/mm.png');
+}
+.card-icon-damage.fire.shadow.nature.ms {
+  background-image: url('../assets/icon-damage/fireShadowNature/ms.png');
+}
+.card-icon-damage.fire.shadow.nature.mxl {
+  background-image: url('../assets/icon-damage/fireShadowNature/mxl.png');
+}
+.card-icon-damage.fire.shadow.nature.rl {
+  background-image: url('../assets/icon-damage/fireShadowNature/rl.png');
+}
+.card-icon-damage.fire.shadow.nature.rm {
+  background-image: url('../assets/icon-damage/fireShadowNature/rm.png');
+}
+.card-icon-damage.fire.shadow.nature.rs {
+  background-image: url('../assets/icon-damage/fireShadowNature/rs.png');
+}
+.card-icon-damage.fire.shadow.nature.rxl {
+  background-image: url('../assets/icon-damage/fireShadowNature/rxl.png');
+}
+.card-icon-damage.fire.shadow.nature.spec {
+  background-image: url('../assets/icon-damage/fireShadowNature/spec.png');
+}
 /* shadowNatureFrost Damage */
-.card-icon-damage.shadowNatureFrost {
+.card-icon-damage.shadow.nature.frost {
   bottom: 3.5px;
 }
-.card-icon-damage.shadowNatureFrost.ml {
+.card-icon-damage.shadow.nature.frost.ml {
   background-image: url('../assets/icon-damage/shadowNatureFrost/ml.png');
 }
-.card-icon-damage.shadowNatureFrost.mm {
+.card-icon-damage.shadow.nature.frost.mm {
   background-image: url('../assets/icon-damage/shadowNatureFrost/mm.png');
 }
-.card-icon-damage.shadowNatureFrost.ms {
+.card-icon-damage.shadow.nature.frost.ms {
   background-image: url('../assets/icon-damage/shadowNatureFrost/ms.png');
 }
-.card-icon-damage.shadowNatureFrost.mxl {
+.card-icon-damage.shadow.nature.frost.mxl {
   background-image: url('../assets/icon-damage/shadowNatureFrost/mxl.png');
 }
-.card-icon-damage.shadowNatureFrost.rl {
+.card-icon-damage.shadow.nature.frost.rl {
   background-image: url('../assets/icon-damage/shadowNatureFrost/rl.png');
 }
-.card-icon-damage.shadowNatureFrost.rm {
+.card-icon-damage.shadow.nature.frost.rm {
   background-image: url('../assets/icon-damage/shadowNatureFrost/rm.png');
 }
-.card-icon-damage.shadowNatureFrost.rs {
+.card-icon-damage.shadow.nature.frost.rs {
   background-image: url('../assets/icon-damage/shadowNatureFrost/rs.png');
 }
-.card-icon-damage.shadowNatureFrost.rxl {
+.card-icon-damage.shadow.nature.frost.rxl {
   background-image: url('../assets/icon-damage/shadowNatureFrost/rxl.png');
 }
-.card-icon-damage.shadowNatureFrost.spec {
+.card-icon-damage.shadow.nature.frost.spec {
   background-image: url('../assets/icon-damage/shadowNatureFrost/spec.png');
+}
+/* All Colour Damage */
+.card-icon-damage.fire.frost.nature.shadow {
+    bottom: 0;
+}
+.card-icon-damage.fire.frost.nature.shadow.ml {
+  background-image: url('../assets/icon-damage/allColour/ml.png');
+}
+.card-icon-damage.fire.frost.nature.shadow.mm {
+  background-image: url('../assets/icon-damage/allColour/mm.png');
+}
+.card-icon-damage.fire.frost.nature.shadow.ms {
+  background-image: url('../assets/icon-damage/allColour/ms.png');
+}
+.card-icon-damage.fire.frost.nature.shadow.mxl {
+  background-image: url('../assets/icon-damage/allColour/mxl.png');
+}
+.card-icon-damage.fire.frost.nature.shadow.rl {
+  background-image: url('../assets/icon-damage/allColour/rl.png');
+}
+.card-icon-damage.fire.frost.nature.shadow.rm {
+  background-image: url('../assets/icon-damage/allColour/rm.png');
+}
+.card-icon-damage.fire.frost.nature.shadow.rs {
+  background-image: url('../assets/icon-damage/allColour/rs.png');
+}
+.card-icon-damage.fire.frost.nature.shadow.rxl {
+  background-image: url('../assets/icon-damage/allColour/rxl.png');
+}
+.card-icon-damage.fire.frost.nature.shadow.spec {
+  background-image: url('../assets/icon-damage/allColour/spec.png');
 }
 
 
@@ -1012,21 +920,23 @@ export default {
   background-repeat: no-repeat;
   border-bottom-right-radius: 10px;
 }
-/* All Colour Health */
-.card-icon-health.allColour.hpBuilding {
-  background-image: url('../assets/icon-health/allColour/hpBuilding.png');
+
+
+/* legendary Health */
+.card-icon-health.neutral.hpBuilding {
+  background-image: url('../assets/icon-health/legendary/hpBuilding.png');
 }
-.card-icon-health.allColour.hpl {
-  background-image: url('../assets/icon-health/allColour/hpl.png');
+.card-icon-health.neutral.hpl {
+  background-image: url('../assets/icon-health/legendary/hpl.png');
 }
-.card-icon-health.allColour.hpm {
-  background-image: url('../assets/icon-health/allColour/hpm.png');
+.card-icon-health.neutral.hpm {
+  background-image: url('../assets/icon-health/legendary/hpm.png');
 }
-.card-icon-health.allColour.hps {
-  background-image: url('../assets/icon-health/allColour/hps.png');
+.card-icon-health.neutral.hps {
+  background-image: url('../assets/icon-health/legendary/hps.png');
 }
-.card-icon-health.allColour.hpxl {
-  background-image: url('../assets/icon-health/allColour/hpxl.png');
+.card-icon-health.neutral.hpxl {
+  background-image: url('../assets/icon-health/legendary/hpxl.png');
 }
 
 /* Fire Health */
@@ -1046,108 +956,6 @@ export default {
   background-image: url('../assets/icon-health/fire/hpxl.png');
 }
 
-/* fireFrost Health */
-.card-icon-health.fireFrost.hpBuilding {
-  background-image: url('../assets/icon-health/fireFrost/hpBuilding.png');
-}
-.card-icon-health.fireFrost.hpl {
-  background-image: url('../assets/icon-health/fireFrost/hpl.png');
-}
-.card-icon-health.fireFrost.hpm {
-  background-image: url('../assets/icon-health/fireFrost/hpm.png');
-}
-.card-icon-health.fireFrost.hps {
-  background-image: url('../assets/icon-health/fireFrost/hps.png');
-}
-.card-icon-health.fireFrost.hpxl {
-  background-image: url('../assets/icon-health/fireFrost/hpxl.png');
-}
-
-/* fireNature Health */
-.card-icon-health.fireNature.hpBuilding {
-  background-image: url('../assets/icon-health/fireNature/hpBuilding.png');
-}
-.card-icon-health.fireNature.hpl {
-  background-image: url('../assets/icon-health/fireNature/hpl.png');
-}
-.card-icon-health.fireNature.hpm {
-  background-image: url('../assets/icon-health/fireNature/hpm.png');
-}
-.card-icon-health.fireNature.hps {
-  background-image: url('../assets/icon-health/fireNature/hps.png');
-}
-.card-icon-health.fireNature.hpxl {
-  background-image: url('../assets/icon-health/fireNature/hpxl.png');
-}
-
-/* fireNatureFrost Health */
-.card-icon-health.fireNatureFrost.hpBuilding {
-  background-image: url('../assets/icon-health/fireNatureFrost/hpBuilding.png');
-}
-.card-icon-health.fireNatureFrost.hpl {
-  background-image: url('../assets/icon-health/fireNatureFrost/hpl.png');
-}
-.card-icon-health.fireNatureFrost.hpm {
-  background-image: url('../assets/icon-health/fireNatureFrost/hpm.png');
-}
-.card-icon-health.fireNatureFrost.hps {
-  background-image: url('../assets/icon-health/fireNatureFrost/hps.png');
-}
-.card-icon-health.fireNatureFrost.hpxl {
-  background-image: url('../assets/icon-health/fireNatureFrost/hpxl.png');
-}
-
-/* fireShadow Health */
-.card-icon-health.fireShadow.hpBuilding {
-  background-image: url('../assets/icon-health/fireShadow/hpBuilding.png');
-}
-.card-icon-health.fireShadow.hpl {
-  background-image: url('../assets/icon-health/fireShadow/hpl.png');
-}
-.card-icon-health.fireShadow.hpm {
-  background-image: url('../assets/icon-health/fireShadow/hpm.png');
-}
-.card-icon-health.fireShadow.hps {
-  background-image: url('../assets/icon-health/fireShadow/hps.png');
-}
-.card-icon-health.fireShadow.hpxl {
-  background-image: url('../assets/icon-health/fireShadow/hpxl.png');
-}
-
-/* fireShadowFrost Health */
-.card-icon-health.fireShadowFrost.hpBuilding {
-  background-image: url('../assets/icon-health/fireShadowFrost/hpBuilding.png');
-}
-.card-icon-health.fireShadowFrost.hpl {
-  background-image: url('../assets/icon-health/fireShadowFrost/hpl.png');
-}
-.card-icon-health.fireShadowFrost.hpm {
-  background-image: url('../assets/icon-health/fireShadowFrost/hpm.png');
-}
-.card-icon-health.fireShadowFrost.hps {
-  background-image: url('../assets/icon-health/fireShadowFrost/hps.png');
-}
-.card-icon-health.fireShadowFrost.hpxl {
-  background-image: url('../assets/icon-health/fireShadowFrost/hpxl.png');
-}
-
-/* fireShadowNature Health */
-.card-icon-health.fireShadowNature.hpBuilding {
-  background-image: url('../assets/icon-health/fireShadowNature/hpBuilding.png');
-}
-.card-icon-health.fireShadowNature.hpl {
-  background-image: url('../assets/icon-health/fireShadowNature/hpl.png');
-}
-.card-icon-health.fireShadowNature.hpm {
-  background-image: url('../assets/icon-health/fireShadowNature/hpm.png');
-}
-.card-icon-health.fireShadowNature.hps {
-  background-image: url('../assets/icon-health/fireShadowNature/hps.png');
-}
-.card-icon-health.fireShadowNature.hpxl {
-  background-image: url('../assets/icon-health/fireShadowNature/hpxl.png');
-}
-
 /* frost Health */
 .card-icon-health.frost.hpBuilding {
   background-image: url('../assets/icon-health/frost/hpBuilding.png');
@@ -1163,23 +971,6 @@ export default {
 }
 .card-icon-health.frost.hpxl {
   background-image: url('../assets/icon-health/frost/hpxl.png');
-}
-
-/* legendary Health */
-.card-icon-health.legendary.hpBuilding {
-  background-image: url('../assets/icon-health/legendary/hpBuilding.png');
-}
-.card-icon-health.legendary.hpl {
-  background-image: url('../assets/icon-health/legendary/hpl.png');
-}
-.card-icon-health.legendary.hpm {
-  background-image: url('../assets/icon-health/legendary/hpm.png');
-}
-.card-icon-health.legendary.hps {
-  background-image: url('../assets/icon-health/legendary/hps.png');
-}
-.card-icon-health.legendary.hpxl {
-  background-image: url('../assets/icon-health/legendary/hpxl.png');
 }
 
 /* nature Health */
@@ -1199,23 +990,6 @@ export default {
   background-image: url('../assets/icon-health/nature/hpxl.png');
 }
 
-/* natureFrost Health */
-.card-icon-health.natureFrost.hpBuilding {
-  background-image: url('../assets/icon-health/natureFrost/hpBuilding.png');
-}
-.card-icon-health.natureFrost.hpl {
-  background-image: url('../assets/icon-health/natureFrost/hpl.png');
-}
-.card-icon-health.natureFrost.hpm {
-  background-image: url('../assets/icon-health/natureFrost/hpm.png');
-}
-.card-icon-health.natureFrost.hps {
-  background-image: url('../assets/icon-health/natureFrost/hps.png');
-}
-.card-icon-health.natureFrost.hpxl {
-  background-image: url('../assets/icon-health/natureFrost/hpxl.png');
-}
-
 /* shadow Health */
 .card-icon-health.shadow.hpBuilding {
   background-image: url('../assets/icon-health/shadow/hpBuilding.png');
@@ -1233,55 +1007,190 @@ export default {
   background-image: url('../assets/icon-health/shadow/hpxl.png');
 }
 
+/* fireFrost Health */
+.card-icon-health.fire.frost.hpBuilding {
+  background-image: url('../assets/icon-health/fireFrost/hpBuilding.png');
+}
+.card-icon-health.fire.frost.hpl {
+  background-image: url('../assets/icon-health/fireFrost/hpl.png');
+}
+.card-icon-health.fire.frost.hpm {
+  background-image: url('../assets/icon-health/fireFrost/hpm.png');
+}
+.card-icon-health.fire.frost.hps {
+  background-image: url('../assets/icon-health/fireFrost/hps.png');
+}
+.card-icon-health.fire.frost.hpxl {
+  background-image: url('../assets/icon-health/fireFrost/hpxl.png');
+}
+
+/* fireNature Health */
+.card-icon-health.fire.nature.hpBuilding {
+  background-image: url('../assets/icon-health/fireNature/hpBuilding.png');
+}
+.card-icon-health.fire.nature.hpl {
+  background-image: url('../assets/icon-health/fireNature/hpl.png');
+}
+.card-icon-health.fire.nature.hpm {
+  background-image: url('../assets/icon-health/fireNature/hpm.png');
+}
+.card-icon-health.fire.nature.hps {
+  background-image: url('../assets/icon-health/fireNature/hps.png');
+}
+.card-icon-health.fire.nature.hpxl {
+  background-image: url('../assets/icon-health/fireNature/hpxl.png');
+}
+
+/* fireShadow Health */
+.card-icon-health.fire.shadow.hpBuilding {
+  background-image: url('../assets/icon-health/fireShadow/hpBuilding.png');
+}
+.card-icon-health.fire.shadow.hpl {
+  background-image: url('../assets/icon-health/fireShadow/hpl.png');
+}
+.card-icon-health.fire.shadow.hpm {
+  background-image: url('../assets/icon-health/fireShadow/hpm.png');
+}
+.card-icon-health.fire.shadow.hps {
+  background-image: url('../assets/icon-health/fireShadow/hps.png');
+}
+.card-icon-health.fire.shadow.hpxl {
+  background-image: url('../assets/icon-health/fireShadow/hpxl.png');
+}
+
+/* natureFrost Health */
+.card-icon-health.nature.frost.hpBuilding {
+  background-image: url('../assets/icon-health/natureFrost/hpBuilding.png');
+}
+.card-icon-health.nature.frost.hpl {
+  background-image: url('../assets/icon-health/natureFrost/hpl.png');
+}
+.card-icon-health.nature.frost.hpm {
+  background-image: url('../assets/icon-health/natureFrost/hpm.png');
+}
+.card-icon-health.nature.frost.hps {
+  background-image: url('../assets/icon-health/natureFrost/hps.png');
+}
+.card-icon-health.nature.frost.hpxl {
+  background-image: url('../assets/icon-health/natureFrost/hpxl.png');
+}
+
 /* shadowFrost Health */
-.card-icon-health.shadowFrost.hpBuilding {
+.card-icon-health.shadow.frost.hpBuilding {
   background-image: url('../assets/icon-health/shadowFrost/hpBuilding.png');
 }
-.card-icon-health.shadowFrost.hpl {
+.card-icon-health.shadow.frost.hpl {
   background-image: url('../assets/icon-health/shadowFrost/hpl.png');
 }
-.card-icon-health.shadowFrost.hpm {
+.card-icon-health.shadow.frost.hpm {
   background-image: url('../assets/icon-health/shadowFrost/hpm.png');
 }
-.card-icon-health.shadowFrost.hps {
+.card-icon-health.shadow.frost.hps {
   background-image: url('../assets/icon-health/shadowFrost/hps.png');
 }
-.card-icon-health.shadowFrost.hpxl {
+.card-icon-health.shadow.frost.hpxl {
   background-image: url('../assets/icon-health/shadowFrost/hpxl.png');
 }
 
 /* shadowNature Health */
-.card-icon-health.shadowNature.hpBuilding {
+.card-icon-health.shadow.nature.hpBuilding {
   background-image: url('../assets/icon-health/shadowNature/hpBuilding.png');
 }
-.card-icon-health.shadowNature.hpl {
+.card-icon-health.shadow.nature.hpl {
   background-image: url('../assets/icon-health/shadowNature/hpl.png');
 }
-.card-icon-health.shadowNature.hpm {
+.card-icon-health.shadow.nature.hpm {
   background-image: url('../assets/icon-health/shadowNature/hpm.png');
 }
-.card-icon-health.shadowNature.hps {
+.card-icon-health.shadow.nature.hps {
   background-image: url('../assets/icon-health/shadowNature/hps.png');
 }
-.card-icon-health.shadowNature.hpxl {
+.card-icon-health.shadow.nature.hpxl {
   background-image: url('../assets/icon-health/shadowNature/hpxl.png');
 }
 
+/* fireNatureFrost Health */
+.card-icon-health.fire.nature.frost.hpBuilding {
+  background-image: url('../assets/icon-health/fireNatureFrost/hpBuilding.png');
+}
+.card-icon-health.fire.nature.frost.hpl {
+  background-image: url('../assets/icon-health/fireNatureFrost/hpl.png');
+}
+.card-icon-health.fire.nature.frost.hpm {
+  background-image: url('../assets/icon-health/fireNatureFrost/hpm.png');
+}
+.card-icon-health.fire.nature.frost.hps {
+  background-image: url('../assets/icon-health/fireNatureFrost/hps.png');
+}
+.card-icon-health.fire.nature.frost.hpxl {
+  background-image: url('../assets/icon-health/fireNatureFrost/hpxl.png');
+}
+
+/* fireShadowFrost Health */
+.card-icon-health.fire.shadow.frost.hpBuilding {
+  background-image: url('../assets/icon-health/fireShadowFrost/hpBuilding.png');
+}
+.card-icon-health.fire.shadow.frost.hpl {
+  background-image: url('../assets/icon-health/fireShadowFrost/hpl.png');
+}
+.card-icon-health.fire.shadow.frost.hpm {
+  background-image: url('../assets/icon-health/fireShadowFrost/hpm.png');
+}
+.card-icon-health.fire.shadow.frost.hps {
+  background-image: url('../assets/icon-health/fireShadowFrost/hps.png');
+}
+.card-icon-health.fire.shadow.frost.hpxl {
+  background-image: url('../assets/icon-health/fireShadowFrost/hpxl.png');
+}
+
+/* fireShadowNature Health */
+.card-icon-health.fire.shadow.nature.hpBuilding {
+  background-image: url('../assets/icon-health/fireShadowNature/hpBuilding.png');
+}
+.card-icon-health.fire.shadow.nature.hpl {
+  background-image: url('../assets/icon-health/fireShadowNature/hpl.png');
+}
+.card-icon-health.fire.shadow.nature.hpm {
+  background-image: url('../assets/icon-health/fireShadowNature/hpm.png');
+}
+.card-icon-health.fire.shadow.nature.hps {
+  background-image: url('../assets/icon-health/fireShadowNature/hps.png');
+}
+.card-icon-health.fire.shadow.nature.hpxl {
+  background-image: url('../assets/icon-health/fireShadowNature/hpxl.png');
+}
+
 /* shadowNatureFrost Health */
-.card-icon-health.shadowNatureFrost.hpBuilding {
+.card-icon-health.shadow.nature.frost.hpBuilding {
   background-image: url('../assets/icon-health/shadowNatureFrost/hpBuilding.png');
 }
-.card-icon-health.shadowNatureFrost.hpl {
+.card-icon-health.shadow.nature.frost.hpl {
   background-image: url('../assets/icon-health/shadowNatureFrost/hpl.png');
 }
-.card-icon-health.shadowNatureFrost.hpm {
+.card-icon-health.shadow.nature.frost.hpm {
   background-image: url('../assets/icon-health/shadowNatureFrost/hpm.png');
 }
-.card-icon-health.shadowNatureFrost.hps {
+.card-icon-health.shadow.nature.frost.hps {
   background-image: url('../assets/icon-health/shadowNatureFrost/hps.png');
 }
-.card-icon-health.shadowNatureFrost.hpxl {
+.card-icon-health.shadow.nature.frost.hpxl {
   background-image: url('../assets/icon-health/shadowNatureFrost/hpxl.png');
+}
+/* All Colour Health */
+.card-icon-health.fire.frost.nature.shadow.hpBuilding {
+  background-image: url('../assets/icon-health/allColour/hpBuilding.png');
+}
+.card-icon-health.fire.frost.nature.shadow.hpl {
+  background-image: url('../assets/icon-health/allColour/hpl.png');
+}
+.card-icon-health.fire.frost.nature.shadow.hpm {
+  background-image: url('../assets/icon-health/allColour/hpm.png');
+}
+.card-icon-health.fire.frost.nature.shadow.hps {
+  background-image: url('../assets/icon-health/allColour/hps.png');
+}
+.card-icon-health.fire.frost.nature.shadow.hpxl {
+  background-image: url('../assets/icon-health/allColour/hpxl.png');
 }
 
 .card-name {
