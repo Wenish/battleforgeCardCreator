@@ -1447,6 +1447,8 @@ export default {
   text-align: left;
   line-height: 24px;
   word-break: break-all;
+  max-height: 24px;
+  overflow: hidden;
 }
 .card-spell-icon-1, .card-spell-icon-2, .card-spell-icon-3, .card-spell-icon-4 {
   height: 23px;
