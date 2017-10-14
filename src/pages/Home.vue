@@ -9,6 +9,9 @@
 import CardSettings from '@/components/CardSettings'
 import BfCard from '@/components/BfCard'
 
+ga('set', 'page', '/');
+ga('send', 'pageview');
+
 export default {
   name: 'home',
   components: {

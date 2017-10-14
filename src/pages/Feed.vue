@@ -5,7 +5,8 @@
 </template>
 
 <script>
-
+ga('set', 'page', '/feed');
+ga('send', 'pageview');
 export default {
   name: 'feed',
   data () {
