@@ -396,8 +396,10 @@ export default {
 
 .card-entity-description {
   color: white;
-  top: 243px;
+  top: 237px;
   left: 23px;
+  font-size: 19px;
+  letter-spacing: 1px;
   text-align: left;
   position: absolute;
   max-width: 224px;
@@ -1246,8 +1248,10 @@ export default {
 .card-name {
   color: white;
   position: absolute;
-  top: 17px;
-  left: 38px;
+  top: 14px;
+  left: 36px;
+  font-size: 19px;
+  letter-spacing: 1px;
   max-height: 20px;
   max-width: 190px;
   overflow: hidden;
@@ -1258,7 +1262,7 @@ export default {
 .card-cost {
   color: white;
   position: absolute;
-  top: 19px;
+  top: 16px;
   right: 19px;
   width: 36px;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
