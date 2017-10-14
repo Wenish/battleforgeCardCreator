@@ -2,8 +2,9 @@
   <div>
     <div class="card-container">
       <div class="card-background"></div>
-      <div class="card-img"></div>
+      <div class="card-img" :style="{ 'background-image': 'url(' + cardImage + ')' }"></div>
       <div class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
+      <div class="card-entity-description"><span v-if="cardCharge">{{cardCharge}}</span><span v-if="cardEntityCount > 1">x{{cardEntityCount}}</span> {{cardEntityName}}</div>
       <div class="card-affinity-tokenslot" :class="affinity"></div>
       <div class="card-affinity-orb" :class="affinity"></div>
       <div class="card-orb-1" :class="orbType1"></div>
@@ -20,7 +21,22 @@
     </div>
       <div class="card-settings">
         <el-input placeholder="Card Name" v-model="cardName"></el-input>
+        <el-input-number v-model="cardCharge" :min="0" :max="99"></el-input-number>
+        <el-input-number v-model="cardEntityCount" :min="1" :max="99"></el-input-number>
+        <el-input placeholder="Entity Name" v-model="cardEntityName"></el-input>
         <el-input-number v-model="cardCost" :min="0" :max="9999"></el-input-number>
+        <el-upload
+          class="upload-demo"
+          ref="upload"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-preview="handlePreview"
+          :file-list="fileList"
+          :multiple="false"
+          :on-change="fileOnChange"
+          :auto-upload="false">
+          <el-button slot="trigger" size="small" type="primary">select file</el-button>
+          <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+        </el-upload>
         <el-select v-model="cardDamageType" clearable placeholder="Select">
           <el-option
             v-for="item in cardDamageTypes"
@@ -239,7 +255,11 @@ export default {
       orbType3: '',
       orbType4: '',
       cardName: '',
+      cardImage: '',
       cardCost: 0,
+      cardCharge: 0,
+      cardEntityCount: 1,
+      cardEntityName: '',
       cardDamageTypes: cardDamageTypes,
       cardDamageType: '',
       cardDamage: 0,
@@ -249,7 +269,21 @@ export default {
       editionSymbols: editionSymbols,
       editionSymbol: '',
       affinities: affinities,
-      affinity: ''
+      affinity: '',
+      fileList: []
+    }
+  },
+  methods: {
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+    fileOnChange(file, fileList) {
+      console.log(file, fileList);
+      console.log(this.cardImage)
+      this.cardImage = file.url;
     }
   }
 }
@@ -270,7 +304,8 @@ export default {
 }
 
 .card-container, .card-settings {
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 
@@ -359,8 +394,20 @@ export default {
   background-image: url('../assets/frames/allColour.png');
 }
 
+.card-entity-description {
+  color: white;
+  top: 243px;
+  left: 23px;
+  text-align: left;
+  position: absolute;
+  max-width: 224px;
+  word-break: break-all;
+  max-height: 19px;
+  overflow: hidden;
+}
+
 .card-affinity-tokenslot {
-  top: 3px;
+  top: 4px;
   right: 1px;
   position: absolute;
   width: 71px;
@@ -878,6 +925,7 @@ export default {
 }
 /* All Colour Damage */
 .card-icon-damage.fire.frost.nature.shadow {
+    /* becuase she shadowNatureFrost pictures are a little off */
     bottom: 0;
 }
 .card-icon-damage.fire.frost.nature.shadow.ml {
