@@ -480,11 +480,11 @@ export default {
   right: 8px;
 }
 .card-orb-2 {
-  top: 48px;
+  top: 47.5px;
   right: 22px;
 }
 .card-orb-3 {
-  top: 48px;
+  top: 47.5px;
   right: 37px;
 }
 .card-orb-4 {
@@ -1265,6 +1265,7 @@ export default {
   top: 16px;
   right: 19px;
   width: 36px;
+  font-size: 15px;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
