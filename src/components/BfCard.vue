@@ -1283,7 +1283,7 @@ export default {
   color: white;
   position: absolute;
   bottom: 14px;
-  right: 78px;
+  left: 170px;
   font-size: 20px;
   letter-spacing: 1px;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
