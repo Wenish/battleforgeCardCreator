@@ -1262,7 +1262,7 @@ export default {
 .card-cost {
   color: white;
   position: absolute;
-  top: 16px;
+  top: 17px;
   right: 19px;
   width: 36px;
   font-size: 15px;
