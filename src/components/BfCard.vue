@@ -1,47 +1,15 @@
 <template>
   <div>
-    <div class="card-settings">
-      <el-select v-model="cardColor" placeholder="Select">
-        <el-option
-          v-for="item in cardColors"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-input placeholder="Card Name" v-model="cardName"></el-input>
-      <el-input-number v-model="cardCost" :min="0" :max="9999"></el-input-number>
-      <el-select v-model="cardDamageType" clearable placeholder="Select">
-        <el-option
-          v-for="item in cardDamageTypes"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-input-number v-model="cardDamage" :min="0" :max="9999"></el-input-number>
-      <el-select v-model="cardHealthType" clearable placeholder="Select">
-        <el-option
-          v-for="item in cardHealthTypes"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-input-number v-model="cardHealth" :min="0" :max="9999"></el-input-number>
-      <el-select v-model="editionSymbol" clearable placeholder="Select">
-        <el-option
-          v-for="item in editionSymbols"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-    </div>
     <div class="card-container">
       <div class="card-background"></div>
       <div class="card-img"></div>
       <div class="card-frame" :class="cardColor"></div>
+      <div class="card-affinity-tokenslot" :class="affinity"></div>
+      <div class="card-affinity-orb" :class="affinity"></div>
+      <div class="card-orb-1" :class="orbType1"></div>
+      <div class="card-orb-2" :class="orbType2"></div>
+      <div class="card-orb-3" :class="orbType3"></div>
+      <div class="card-orb-4" :class="orbType4"></div>
       <div class="card-icon-damage" :class="[cardColor, cardDamageType]"></div>
       <div class="card-icon-health" :class="[cardColor, cardHealthType]"></div>
       <div class="card-name">{{ cardName }}</div>
@@ -50,6 +18,84 @@
       <div class="card-health"><span v-if="cardHealth">{{ cardHealth }}</span></div>
       <div class="card-edition-symbol" :class="editionSymbol"></div>
     </div>
+      <div class="card-settings">
+        <el-select v-model="cardColor" placeholder="Select">
+          <el-option
+            v-for="item in cardColors"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input placeholder="Card Name" v-model="cardName"></el-input>
+        <el-input-number v-model="cardCost" :min="0" :max="9999"></el-input-number>
+        <el-select v-model="cardDamageType" clearable placeholder="Select">
+          <el-option
+            v-for="item in cardDamageTypes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input-number v-model="cardDamage" :min="0" :max="9999"></el-input-number>
+        <el-select v-model="cardHealthType" clearable placeholder="Select">
+          <el-option
+            v-for="item in cardHealthTypes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input-number v-model="cardHealth" :min="0" :max="9999"></el-input-number>
+        <el-select v-model="editionSymbol" clearable placeholder="Select">
+          <el-option
+            v-for="item in editionSymbols"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select v-model="orbType1" clearable placeholder="Select">
+          <el-option
+            v-for="item in orbTypes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select v-model="orbType2" clearable placeholder="Select">
+          <el-option
+            v-for="item in orbTypes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select v-model="orbType3" clearable placeholder="Select">
+          <el-option
+            v-for="item in orbTypes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select v-model="orbType4" clearable placeholder="Select">
+          <el-option
+            v-for="item in orbTypes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select v-model="affinity" clearable placeholder="Select">
+          <el-option
+            v-for="item in affinities"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
   </div>
 </template>
 
@@ -106,6 +152,25 @@ var cardColors = [
   }, {
     value: 'shadowNatureFrost',
     label: 'shadowNatureFrost'
+  }
+]
+
+var orbTypes = [
+  {
+    value: 'neutral',
+    label: 'Neutral'
+  }, {
+    value: 'fire',
+    label: 'Fire'
+  }, {
+    value: 'frost',
+    label: 'Frost'
+  }, {
+    value: 'nature',
+    label: 'Nature'
+  }, {
+    value: 'shadow',
+    label: 'Shadow'
   }
 ]
 
@@ -211,12 +276,33 @@ var editionSymbols = [
   }
 ]
 
+var affinities = [
+  {
+    value: 'fire',
+    label: 'Fire'
+  }, {
+    value: 'frost',
+    label: 'Frost'
+  }, {
+    value: 'nature',
+    label: 'Nature'
+  }, {
+    value: 'shadow',
+    label: 'Shadow'
+  }
+]
+
 export default {
   name: 'bfCard',
   data () {
     return {
       cardColors: cardColors,
       cardColor: 'blank',
+      orbTypes: orbTypes,
+      orbType1: '',
+      orbType2: '',
+      orbType3: '',
+      orbType4: '',
       cardName: '',
       cardCost: 0,
       cardDamageTypes: cardDamageTypes,
@@ -226,7 +312,9 @@ export default {
       cardHealthType: '',
       cardHealth: 0,
       editionSymbols: editionSymbols,
-      editionSymbol: ''
+      editionSymbol: '',
+      affinities: affinities,
+      affinity: ''
     }
   }
 }
@@ -234,6 +322,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .card-container{
   width: 296px;
   height: 408px;
@@ -244,6 +333,11 @@ export default {
   margin: auto;
   position: relative;
 }
+
+.card-container, .card-settings {
+  margin-top: 30px;
+}
+
 
 @media screen and (min-width : 768px) {
   .card-background{
@@ -278,6 +372,7 @@ export default {
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
+  border-radius: 10px;
 }
 .card-frame.allColour {
   background-image: url('../assets/frames/allColour.png');
@@ -331,6 +426,89 @@ export default {
   background-image: url('../assets/frames/shadowNatureFrost.png');
 }
 
+.card-affinity-tokenslot {
+  top: 3px;
+  right: 1px;
+  position: absolute;
+  width: 71px;
+  height: 65px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.card-affinity-tokenslot.fire {
+  background-image: url('../assets/affinity/tokenslot_fire.png');
+}
+.card-affinity-tokenslot.frost {
+  background-image: url('../assets/affinity/tokenslot_frost.png');
+}
+.card-affinity-tokenslot.nature {
+  background-image: url('../assets/affinity/tokenslot_nature.png');
+}
+.card-affinity-tokenslot.shadow {
+  background-image: url('../assets/affinity/tokenslot_shadow.png');
+}
+
+.card-affinity-orb {
+  bottom: 134px;
+  right: 10px;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.card-affinity-orb.fire {
+  background-image: url('../assets/affinity/ui_card_l_affinity_orb_fire.png');
+}
+.card-affinity-orb.frost {
+  background-image: url('../assets/affinity/ui_card_l_affinity_orb_frost.png');
+}
+.card-affinity-orb.nature {
+  background-image: url('../assets/affinity/ui_card_l_affinity_orb_nature.png');
+}
+.card-affinity-orb.shadow {
+  background-image: url('../assets/affinity/ui_card_l_affinity_orb_shadow.png');
+}
+
+.card-orb-1, .card-orb-2, .card-orb-3, .card-orb-4 {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.card-orb-1.neutral, .card-orb-2.neutral, .card-orb-3.neutral, .card-orb-4.neutral {
+  background-image: url('../assets/orbs/ui_card_250_token_hole_0.png');
+}
+.card-orb-1.fire, .card-orb-2.fire, .card-orb-3.fire, .card-orb-4.fire {
+  background-image: url('../assets/orbs/ui_card_250_token_fire.png');
+}
+.card-orb-1.frost, .card-orb-2.frost, .card-orb-3.frost, .card-orb-4.frost {
+  background-image: url('../assets/orbs/ui_card_250_token_frost.png');
+}
+.card-orb-1.nature, .card-orb-2.nature, .card-orb-3.nature, .card-orb-4.nature {
+  background-image: url('../assets/orbs/ui_card_250_token_nature.png');
+}
+.card-orb-1.shadow, .card-orb-2.shadow, .card-orb-3.shadow, .card-orb-4.shadow {
+  background-image: url('../assets/orbs/ui_card_250_token_shadow.png');
+}
+.card-orb-1 {
+  top: 44px;
+  right: 7px;
+}
+.card-orb-2 {
+  top: 48px;
+  right: 22px;
+}
+.card-orb-3 {
+  top: 48px;
+  right: 37px;
+}
+.card-orb-4 {
+  top: 44px;
+  right: 52px;
+}
+
 /* Diffrent Damage icons */
 .card-icon-damage {
   bottom: 0;
@@ -340,6 +518,7 @@ export default {
   height: 58px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  border-bottom-left-radius: 10px;
 }
 /* All Colour Damage */
 .card-icon-damage.allColour.ml {
@@ -831,6 +1010,7 @@ export default {
   height: 58px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  border-bottom-right-radius: 10px;
 }
 /* All Colour Health */
 .card-icon-health.allColour.hpBuilding {
