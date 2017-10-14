@@ -18,6 +18,24 @@
       <div class="card-attack-dmg"><span v-if="cardDamage">{{ cardDamage }}</span></div>
       <div class="card-health"><span v-if="cardHealth">{{ cardHealth }}</span></div>
       <div class="card-edition-symbol" :class="editionSymbol"></div>
+      <div class="card-spells">
+        <div class="card-spell">
+          <div class="card-spell-icon-1" :class="cardSpellIcon1"></div>
+          <div class="card-spell-name">{{ cardSpellName1 }}</div>
+        </div>
+        <div class="card-spell">
+          <div class="card-spell-icon-2" :class="cardSpellIcon2"></div>
+          <div class="card-spell-name">{{ cardSpellName2 }}</div>
+        </div>
+        <div class="card-spell">
+          <div class="card-spell-icon-3" :class="cardSpellIcon3"></div>
+          <div class="card-spell-name">{{ cardSpellName3 }}</div>
+        </div>
+        <div class="card-spell">
+          <div class="card-spell-icon-4" :class="cardSpellIcon4"></div>
+          <div class="card-spell-name">{{ cardSpellName4 }}</div>
+        </div>
+      </div>
     </div>
       <div class="card-settings">
         <el-input placeholder="Card Name" v-model="cardName"></el-input>
@@ -103,6 +121,43 @@
             :value="item.value">
           </el-option>
         </el-select>
+
+        <el-select v-model="cardSpellIcon1" clearable placeholder="Select">
+          <el-option
+            v-for="item in spells"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input placeholder="Card Spell 1" v-model="cardSpellName1"></el-input>
+        <el-select v-model="cardSpellIcon2" clearable placeholder="Select">
+          <el-option
+            v-for="item in spells"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input placeholder="Card Spell 2" v-model="cardSpellName2"></el-input>
+        <el-select v-model="cardSpellIcon3" clearable placeholder="Select">
+          <el-option
+            v-for="item in spells"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input placeholder="Card Spell 3" v-model="cardSpellName3"></el-input>
+        <el-select v-model="cardSpellIcon4" clearable placeholder="Select">
+          <el-option
+            v-for="item in spells"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input placeholder="Card Spell 4" v-model="cardSpellName4"></el-input>
       </div>
   </div>
 </template>
@@ -245,6 +300,25 @@ var affinities = [
   }
 ]
 
+var spells = [
+  {
+    value: 'active-special',
+    label: 'Active Special'
+  }, {
+    value: 'autocast',
+    label: 'Autocast'
+  }, {
+    value: 'godspell',
+    label: 'Godspell'
+  }, {
+    value: 'mode-change',
+    label: 'Mode Change'
+  }, {
+    value: 'passive-special',
+    label: 'Passive Special'
+  }
+]
+
 export default {
   name: 'bfCard',
   data () {
@@ -270,7 +344,16 @@ export default {
       editionSymbol: '',
       affinities: affinities,
       affinity: '',
-      fileList: []
+      fileList: [],
+      spells: spells,
+      cardSpellIcon1: '',
+      cardSpellIcon2: '',
+      cardSpellIcon3: '',
+      cardSpellIcon4: '',
+      cardSpellName1: '',
+      cardSpellName2: '',
+      cardSpellName3: '',
+      cardSpellName4: ''
     }
   },
   methods: {
@@ -1349,5 +1432,65 @@ export default {
 }
 .card-edition-symbol.twilight_uncommon {
   background-image: url('../assets/edition-symbols/twilight_uncommon.png');
+}
+
+.card-spells {
+  top: 269px;
+  left: 18px;
+  position: absolute;
+  width: 260px;
+  height: 96px;
+  overflow: hidden;
+}
+.card-spell {
+  color: white;
+  text-align: left;
+  line-height: 24px;
+  word-break: break-all;
+}
+.card-spell-icon-1, .card-spell-icon-2, .card-spell-icon-3, .card-spell-icon-4 {
+  height: 23px;
+  width: 23px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  float: left;
+}
+
+.card-spell-icon-1.active-special,
+.card-spell-icon-2.active-special,
+.card-spell-icon-3.active-special,
+.card-spell-icon-4.active-special {
+  background-image: url('../assets/icons/ui_card_500_icon_active_special.png');
+}
+
+.card-spell-icon-1.autocast,
+.card-spell-icon-2.autocast,
+.card-spell-icon-3.autocast,
+.card-spell-icon-4.autocast {
+  background-image: url('../assets/icons/ui_card_500_icon_autocast.png');
+}
+
+.card-spell-icon-1.godspell,
+.card-spell-icon-2.godspell,
+.card-spell-icon-3.godspell,
+.card-spell-icon-4.godspell {
+  background-image: url('../assets/icons/ui_card_500_icon_godspell.png');
+}
+
+.card-spell-icon-1.mode-change,
+.card-spell-icon-2.mode-change,
+.card-spell-icon-3.mode-change,
+.card-spell-icon-4.mode-change {
+  background-image: url('../assets/icons/ui_card_500_icon_mode_change.png');
+}
+
+.card-spell-icon-1.passive-special,
+.card-spell-icon-2.passive-special,
+.card-spell-icon-3.passive-special,
+.card-spell-icon-4.passive-special {
+  background-image: url('../assets/icons/ui_card_500_icon_passive_special.png');
+}
+.card-spell-name {
+  padding-left: 27px;
 }
 </style>
