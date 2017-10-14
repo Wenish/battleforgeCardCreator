@@ -1,0 +1,24 @@
+[debug] [2017-10-14T15:27:56.581Z] ----------------------------------------------------------------------
+[debug] [2017-10-14T15:27:56.583Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Johnny\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-10-14T15:27:56.583Z] CLI Version:   3.13.1
+[debug] [2017-10-14T15:27:56.583Z] Platform:      win32
+[debug] [2017-10-14T15:27:56.583Z] Node Version:  v8.3.0
+[debug] [2017-10-14T15:27:56.583Z] Time:          Sat Oct 14 2017 17:27:56 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] [2017-10-14T15:27:56.583Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-14T15:27:56.592Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-14T15:27:56.593Z] > authorizing via signed-in user
+[debug] [2017-10-14T15:27:56.594Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/battleforge-card-creator  
+ Sat Oct 14 2017 17:27:56 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] [2017-10-14T15:27:57.242Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-14T15:27:57.242Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/battleforge-card-creator/tokens  
+ Sat Oct 14 2017 17:27:57 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] [2017-10-14T15:27:57.788Z] <<< HTTP RESPONSE 200
+[info] 1
+[info] 
+[info] === Deploying to 'battleforge-card-creator'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2017-10-14T15:27:59.815Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/battleforge-card-creator/uploads/-KwQUwaj2ZAlHTum3rq_?fileCount=293&message=  
+ Sat Oct 14 2017 17:27:59 GMT+0200 (Mitteleuropäische Sommerzeit)

@@ -40,11 +40,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108121452-1"></script>
     <script>
       if (document.location.hostname.indexOf("battleforge-card-creator.firebaseapp.com") != -1) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-108121452-1');
+        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+        ga('create', 'UA-108121452-1', 'auto', 'pageTracker');
+        ga('pageTracker.send', 'pageview');
       }
     </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
   </body>
 </html>
