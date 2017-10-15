@@ -481,13 +481,13 @@ export default {
   color: white;
   top: 237px;
   left: 23px;
-  font-size: 19px;
-  letter-spacing: 1px;
+  font-size: 1.2em;
+  letter-spacing: 0.054em;
   text-align: left;
   position: absolute;
   max-width: 224px;
   word-break: break-all;
-  max-height: 19px;
+  max-height: 23px;
   overflow: hidden;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
@@ -1333,8 +1333,8 @@ export default {
   position: absolute;
   top: 14px;
   left: 36px;
-  font-size: 19px;
-  letter-spacing: 1px;
+  font-size: 1.2em;
+  letter-spacing: 0.054em;
   max-height: 23px;
   max-width: 190px;
   overflow: hidden;
@@ -1349,7 +1349,7 @@ export default {
   top: 17px;
   right: 19px;
   width: 36px;
-  font-size: 15px;
+  font-size: 0.95em;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
@@ -1358,8 +1358,8 @@ export default {
   position: absolute;
   bottom: 14px;
   left: 53px;
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 1.27em;
+  letter-spacing: 0.054em;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
@@ -1368,8 +1368,8 @@ export default {
   position: absolute;
   bottom: 14px;
   left: 170px;
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 1.27em;
+  letter-spacing: 0.054em;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
