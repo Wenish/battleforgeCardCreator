@@ -15,15 +15,8 @@
 </template>
 
 <script>
-ga('set', 'page', '/Impressum');
-ga('send', 'pageview');
-
 export default {
-  name: 'home',
-  components: {
-    CardSettings,
-    BfCard
-  }
+  name: 'home'
 }
 </script>
 

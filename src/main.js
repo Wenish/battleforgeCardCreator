@@ -8,6 +8,11 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+router.afterEach((to, from) => {
+  ga('set', 'page', to.path);
+  ga('send', 'pageview');
+})
+console.log(router)
 Vue.config.productionTip = false
 
 Vue.use(ElementUI, { locale })
