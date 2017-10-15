@@ -1449,6 +1449,8 @@ export default {
   word-break: break-all;
   max-height: 24px;
   overflow: hidden;
+  height: 24px;
+  width: 100%;
 }
 .card-spell-icon-1, .card-spell-icon-2, .card-spell-icon-3, .card-spell-icon-4 {
   height: 23px;
