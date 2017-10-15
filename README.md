@@ -35,3 +35,12 @@ firebase login
 # deploy the website on firebase
 firebase deploy
 ```
+
+## Features
+
+- [x] edit a card
+- [ ] save a card
+- [ ] share link for a card
+- [ ] reedit a card
+- [ ] live feed of cards
+- [ ] nice design
