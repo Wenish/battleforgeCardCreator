@@ -1335,7 +1335,7 @@ export default {
   left: 36px;
   font-size: 19px;
   letter-spacing: 1px;
-  max-height: 20px;
+  max-height: 23px;
   max-width: 190px;
   overflow: hidden;
   word-break: break-all;
