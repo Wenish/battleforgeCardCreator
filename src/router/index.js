@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import firebase from 'firebase'
 import store from '@/store'
 import Home from '@/pages/Home'
+import Login from '@/pages/Login'
 import Feed from '@/pages/Feed'
 import Impressum from '@/pages/Impressum'
 
@@ -14,6 +15,28 @@ const router = new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/login',
+      component: Login,
+      beforeEnter: (to, from, next) => {
+        if (store.state.user.user) {
+          next('/')
+        } else {
+          next()
+        }
+      }
+    },
+    {
+      path: '/logout',
+      beforeEnter: (to, from, next) => {
+        if (store.state.user) {
+          firebase.auth().signOut()
+          next('/')
+        } else {
+          next('/login')
+        }
+      }
     },
     {
       path: '/feed',
@@ -32,7 +55,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!store.state.user) {
+    if (!store.state.user.user) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }

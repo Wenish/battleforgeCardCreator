@@ -9,6 +9,8 @@ import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
 
+// firebase
+import './initFirebase'
 
 Vue.config.productionTip = false
 

@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    Feedpage
+    {{ msg }}
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'feed',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Feed'
     }
   }
 }

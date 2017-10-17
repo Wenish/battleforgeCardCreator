@@ -1,16 +1,61 @@
 <template>
   <div class="page-container">
-    Feedpage
+    <h1>{{ msg }}</h1>
+    <div id="firebaseui-auth-container" />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import firebase from 'firebase'
+import firebaseui from 'firebaseui'
+import { ui } from '../initFirebase'
+import 'firebaseui/dist/firebaseui.css'
+
+const uiConfig = {
+  callbacks: {
+    // Called when the user has been successfully signed in
+    signInSuccess (user, credential, redirectUrl) {
+      // router.push('/')
+      // Do not redirect.
+      return false
+    }
+  },
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+  // Opens IDP Providers sign-in flow in a popup
+  signInFlow: 'popup',
+  signInOptions: [
+    {
+      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      scopes: [
+        'public_profile',
+        'email'
+        // 'user_likes',
+        // 'user_friends'
+      ]
+    },
+    {
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      // Whether the display name should be displayed in Sign Up page.
+      requireDisplayName: true
+    }
+  ]
+  // Terms of service url.
+  // tosUrl: 'https://www.google.com'
+}
+
 export default {
-  name: 'feed',
+  name: 'login',
+  mounted () {
+    ui.start('#firebaseui-auth-container', uiConfig)
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Login'
     }
+  },
+  computed: {
+    ...mapState(['user'])
   }
 }
 </script>
