@@ -1,11 +1,10 @@
 <template>
-  <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+  <el-menu theme="dark" :default-active="$route.name" class="el-menu-demo" mode="horizontal">
     <router-link to="/"><el-menu-item index="Home">Card Creator</el-menu-item></router-link>
     <router-link to="/feed"><el-menu-item index="Feed">Feed</el-menu-item></router-link>
     <router-link to="/impressum"><el-menu-item index="Impressum">Impressum</el-menu-item></router-link>
-    <!--
-    <router-link to="/login"><el-menu-item index="Login">Login</el-menu-item></router-link>
-  -->
+    <router-link to="/login" v-if="!user.user"><el-menu-item index="Login">Login</el-menu-item></router-link>
+    <router-link to="/logout" v-if="user.user"><el-menu-item index="Logout">Logout</el-menu-item></router-link>
   </el-menu>
 </template>
 
@@ -14,13 +13,8 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'navbar',
-  data () {
-    return {
-      activeIndex: this.$route.name
-    }
-  },
   computed: {
-    ...mapState(['route'])
+    ...mapState(['user'])
   }
 }
 </script>

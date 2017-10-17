@@ -18,6 +18,7 @@ const router = new Router({
     },
     {
       path: '/login',
+      name: 'Login',
       component: Login,
       beforeEnter: (to, from, next) => {
         if (store.state.user.user) {
@@ -29,6 +30,7 @@ const router = new Router({
     },
     {
       path: '/logout',
+      name: 'Logout',
       beforeEnter: (to, from, next) => {
         if (store.state.user) {
           firebase.auth().signOut()
@@ -41,7 +43,8 @@ const router = new Router({
     {
       path: '/feed',
       name: 'Feed',
-      component: Feed
+      component: Feed,
+      meta: { requiresAuth: true }
     },
     {
       path: '/impressum',
