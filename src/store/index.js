@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import hello from './modules/hello'
-import editCard from './modules/editCard'
+import firebase from './modules/firebase'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -10,7 +11,8 @@ const DEBUG = process.env.NODE_ENV === 'development'
 export default new Vuex.Store({
   modules: {
     hello,
-    editCard
+    user,
+    firebase
   },
   strict: DEBUG
 })

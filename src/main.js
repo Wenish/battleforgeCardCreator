@@ -7,15 +7,15 @@ import '../theme/index.css'
 import App from './App'
 import router from './router'
 import store from './store'
+import { sync } from 'vuex-router-sync'
 
-router.afterEach((to, from) => {
-  ga('set', 'page', to.path);
-  ga('send', 'pageview');
-})
-console.log(router)
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI, { locale })
+
+// Sync the router with the vuex store. This registers `store.state.route`
+sync(store, router)
 
 /* eslint-disable no-new */
 new Vue({

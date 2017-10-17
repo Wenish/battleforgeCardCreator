@@ -1,3 +1,3 @@
 export const helloWorld = 'helloWorld'
 
-export const editCard = 'editCard'
+export const getUser = 'getUser'
