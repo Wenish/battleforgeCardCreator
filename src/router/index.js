@@ -32,7 +32,7 @@ const router = new Router({
       path: '/logout',
       name: 'Logout',
       beforeEnter: (to, from, next) => {
-        if (store.state.user) {
+        if (store.state.user.user) {
           firebase.auth().signOut()
           next('/')
         } else {

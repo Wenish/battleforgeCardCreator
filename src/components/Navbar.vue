@@ -1,5 +1,5 @@
 <template>
-  <el-menu theme="dark" :default-active="$route.name" class="el-menu-demo" mode="horizontal">
+  <el-menu theme="dark" :default-active="route.name" class="el-menu-demo" mode="horizontal">
     <router-link to="/"><el-menu-item index="Home">Card Creator</el-menu-item></router-link>
     <router-link to="/feed"><el-menu-item index="Feed">Feed</el-menu-item></router-link>
     <router-link to="/impressum"><el-menu-item index="Impressum">Impressum</el-menu-item></router-link>
@@ -14,7 +14,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'navbar',
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user', 'route'])
   }
 }
 </script>

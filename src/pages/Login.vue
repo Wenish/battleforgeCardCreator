@@ -16,7 +16,7 @@ const uiConfig = {
   callbacks: {
     // Called when the user has been successfully signed in
     signInSuccess (user, credential, redirectUrl) {
-      // $router.push('/')
+      //$router.push('/')
       // Do not redirect.
       return false
     }
@@ -35,9 +35,22 @@ const uiConfig = {
       ]
     },
     {
+      provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      scopes: ['https://www.googleapis.com/auth/plus.login']
+    },
+    {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
       // Whether the display name should be displayed in Sign Up page.
       requireDisplayName: true
+    },
+    {
+      provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+      // Invisible reCAPTCHA with image challenge and bottom left badge.
+      recaptchaParameters: {
+        type: 'image',
+        size: 'invisible',
+        badge: 'bottomleft'
+      }
     }
   ]
   // Terms of service url.
@@ -56,6 +69,17 @@ export default {
   },
   computed: {
     ...mapState(['user'])
+  },
+  watch: {
+    'user.user' (val) {
+      if (val) {
+        if (this.$router.currentRoute.query.redirect) {
+          this.$router.replace(this.$router.currentRoute.query.redirect)
+        } else {
+          this.$router.replace('/')
+        }
+      }
+    }
   }
 }
 </script>
