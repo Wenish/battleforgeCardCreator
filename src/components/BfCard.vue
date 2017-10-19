@@ -1367,7 +1367,7 @@ export default {
   top: 17px;
   right: 19px;
   width: 36px;
-  font-size: 0.95em;
+  font-size: 1.13em;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
