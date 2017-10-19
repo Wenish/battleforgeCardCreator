@@ -38,126 +38,152 @@
       </div>
     </div>
       <div class="card-settings">
-        <el-input placeholder="Card Name" v-model="cardName"></el-input>
-        <el-input-number v-model="cardCharge" :min="0" :max="99"></el-input-number>
-        <el-input-number v-model="cardEntityCount" :min="1" :max="99"></el-input-number>
-        <el-input placeholder="Entity Name" v-model="cardEntityName"></el-input>
-        <el-input-number v-model="cardCost" :min="0" :max="9999"></el-input-number>
-        <el-upload
-          class="upload-demo"
-          ref="upload"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :file-list="fileList"
-          :multiple="false"
-          :on-change="fileOnChange"
-          :auto-upload="false">
-          <el-button slot="trigger" size="small" type="primary">select file</el-button>
-          <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
-        </el-upload>
-        <el-select v-model="cardDamageType" clearable placeholder="Select">
-          <el-option
-            v-for="item in cardDamageTypes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-input-number v-model="cardDamage" :min="0" :max="9999"></el-input-number>
-        <el-select v-model="cardHealthType" clearable placeholder="Select">
-          <el-option
-            v-for="item in cardHealthTypes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-input-number v-model="cardHealth" :min="0" :max="9999"></el-input-number>
-        <el-select v-model="editionSymbol" clearable placeholder="Select">
-          <el-option
-            v-for="item in editionSymbols"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-select v-model="orbType1" clearable placeholder="Select">
-          <el-option
-            v-for="item in orbTypes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-select v-model="orbType2" clearable placeholder="Select">
-          <el-option
-            v-for="item in orbTypes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-select v-model="orbType3" clearable placeholder="Select">
-          <el-option
-            v-for="item in orbTypes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-select v-model="orbType4" clearable placeholder="Select">
-          <el-option
-            v-for="item in orbTypes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-select v-model="affinity" clearable placeholder="Select">
-          <el-option
-            v-for="item in affinities"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-
-        <el-select v-model="cardSpellIcon1" clearable placeholder="Select">
-          <el-option
-            v-for="item in spells"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-input placeholder="Card Spell 1" v-model="cardSpellName1"></el-input>
-        <el-select v-model="cardSpellIcon2" clearable placeholder="Select">
-          <el-option
-            v-for="item in spells"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-input placeholder="Card Spell 2" v-model="cardSpellName2"></el-input>
-        <el-select v-model="cardSpellIcon3" clearable placeholder="Select">
-          <el-option
-            v-for="item in spells"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-input placeholder="Card Spell 3" v-model="cardSpellName3"></el-input>
-        <el-select v-model="cardSpellIcon4" clearable placeholder="Select">
-          <el-option
-            v-for="item in spells"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-input placeholder="Card Spell 4" v-model="cardSpellName4"></el-input>
+        <form novalidate @submit.stop.prevent="submit">
+          <md-input-container>
+            <label>Card Name</label>
+            <md-input v-model="cardName"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label>Charge</label>
+            <md-input type="number" v-model="cardCharge"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label>Entity Count</label>
+            <md-input type="number" v-model="cardEntityCount"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label>Entity Name</label>
+            <md-input v-model="cardEntityName"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label>Card Cost</label>
+            <md-input type="number" v-model="cardCost"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label for="cardDamageType">Damage Type</label>
+            <md-select name="cardDamageType" id="cardDamageType" v-model="cardDamageType">
+              <md-option v-for="item in cardDamageTypes"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label>Card Damage</label>
+            <md-input type="number" v-model="cardDamage"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label for="cardHealthType">Health Type</label>
+            <md-select name="cardHealthType" id="cardHealthType" v-model="cardHealthType">
+              <md-option v-for="item in cardHealthTypes"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label>Card Health</label>
+            <md-input type="number" v-model="cardHealth"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label for="editionSymbol">Edition Symbole</label>
+            <md-select name="editionSymbol" id="editionSymbol" v-model="editionSymbol">
+              <md-option v-for="item in editionSymbols"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label for="orbType1">Orb 1</label>
+            <md-select name="orbType1" id="orbType1" v-model="orbType1">
+              <md-option v-for="item in orbTypes"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label for="orbType2">Orb 2</label>
+            <md-select name="orbType2" id="orbType2" v-model="orbType2">
+              <md-option v-for="item in orbTypes"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label for="orbType3">Orb 3</label>
+            <md-select name="orbType3" id="orbType3" v-model="orbType3">
+              <md-option v-for="item in orbTypes"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label for="orbType4">Orb 4</label>
+            <md-select name="orbType4" id="orbType4" v-model="orbType4">
+              <md-option v-for="item in orbTypes"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label for="affinity">Affinity</label>
+            <md-select name="affinity" id="affinity" v-model="affinity">
+              <md-option v-for="item in affinities"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label for="cardSpellIcon1">Spell Icon 1</label>
+            <md-select name="cardSpellIcon1" id="cardSpellIcon1" v-model="cardSpellIcon1">
+              <md-option v-for="item in spells"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label>Card Spell 1</label>
+            <md-input v-model="cardSpellName1"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label for="cardSpellIcon2">Spell Icon 2</label>
+            <md-select name="cardSpellIcon2" id="cardSpellIcon2" v-model="cardSpellIcon2">
+              <md-option v-for="item in spells"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label>Card Spell 2</label>
+            <md-input v-model="cardSpellName2"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label for="cardSpellIcon3">Spell Icon 3</label>
+            <md-select name="cardSpellIcon3" id="cardSpellIcon3" v-model="cardSpellIcon3">
+              <md-option v-for="item in spells"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label>Card Spell 3</label>
+            <md-input v-model="cardSpellName3"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label for="cardSpellIcon4">Spell Icon 4</label>
+            <md-select name="cardSpellIcon4" id="cardSpellIcon4" v-model="cardSpellIcon4">
+              <md-option v-for="item in spells"
+              :key="item.value"
+              :value="item.value">{{ item.label }}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label>Card Spell 4</label>
+            <md-input v-model="cardSpellName4"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <label>Crad Picture</label>
+            <md-file v-on:selected="handleSelect" accept="image/*"></md-file>
+          </md-input-container>
+        </form>
       </div>
   </div>
 </template>
@@ -357,16 +383,8 @@ export default {
     }
   },
   methods: {
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePreview(file) {
-      console.log(file);
-    },
-    fileOnChange(file, fileList) {
-      console.log(file, fileList);
-      console.log(this.cardImage)
-      this.cardImage = file.url;
+    handleSelect(file, fileList) {
+        this.cardImage = URL.createObjectURL(file[0]);
     }
   }
 }
