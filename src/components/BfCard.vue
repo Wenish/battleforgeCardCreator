@@ -44,6 +44,10 @@
             <md-input v-model="cardName"></md-input>
           </md-input-container>
           <md-input-container>
+            <label>Crad Picture</label>
+            <md-file v-on:selected="handleSelect" accept="image/*"></md-file>
+          </md-input-container>
+          <md-input-container>
             <label>Charge</label>
             <md-input type="number" v-model="cardCharge"></md-input>
           </md-input-container>
@@ -178,10 +182,6 @@
           <md-input-container>
             <label>Card Spell 4</label>
             <md-input v-model="cardSpellName4"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label>Crad Picture</label>
-            <md-file v-on:selected="handleSelect" accept="image/*"></md-file>
           </md-input-container>
         </form>
       </div>
