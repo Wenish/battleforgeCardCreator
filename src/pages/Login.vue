@@ -48,7 +48,7 @@ const uiConfig = {
       // Invisible reCAPTCHA with image challenge and bottom left badge.
       recaptchaParameters: {
         type: 'image',
-        size: 'invisible',
+        size: 'normal',
         badge: 'bottomleft'
       }
     }
