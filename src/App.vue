@@ -3,16 +3,18 @@
 
 <div class="line"></div>
     <Navbar></Navbar>
+    <Sidenav></Sidenav>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
+import Sidenav from '@/components/Sidenav'
 
 export default {
   name: 'app',
-  components: { Navbar }
+  components: { Navbar, Sidenav }
 }
 </script>
 
