@@ -11,6 +11,9 @@ import firebase from 'firebase'
 import firebaseui from 'firebaseui'
 import { ui } from '../initFirebase'
 import 'firebaseui/dist/firebaseui.css'
+import dialogPolyfill from  "dialog-polyfill"
+
+window.dialogPolyfill = dialogPolyfill
 
 const uiConfig = {
   callbacks: {
