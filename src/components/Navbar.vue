@@ -11,14 +11,14 @@
     </md-button>
 
     <h2 class="md-title" style="flex: 1">BF Card Creator</h2>
-    <router-link to="/login" v-if="!user.user"><md-button class="md-raised">Login</md-button></router-link>
-    <md-menu md-direction="bottom left" v-if="user.user" >
+    <router-link to="/login" v-if="user.isAnonymous"><md-button class="md-raised">Login</md-button></router-link>
+    <md-menu md-direction="bottom left" v-if="!user.isAnonymous" >
       <md-button class="md-icon-button" md-menu-trigger>
         <md-icon>person</md-icon>
       </md-button>
 
       <md-menu-content>
-        <md-menu-item disabled>{{ user.user.displayName }}</md-menu-item>
+        <md-menu-item disabled>{{ user.displayName }}</md-menu-item>
         <md-menu-item><router-link to="/logout">Logout</router-link></md-menu-item>
       </md-menu-content>
     </md-menu>

@@ -20,6 +20,15 @@ export const ui = new firebaseui.auth.AuthUI(firebase.auth())
  * so just update the vuex store with the new user object.
  */
 firebase.auth().onAuthStateChanged(user => {
-  console.log(user);
-  store.commit('UPDATE_USER', user)
+  var userPayload = {
+    displayName: null,
+    photoURL: null,
+    isAnonymous: true,
+  };
+  if (user) {
+    userPayload.displayName = user.displayName
+    userPayload.photoURL = user.photoURL
+    userPayload.isAnonymous = user.isAnonymous
+  }
+  store.commit('UPDATE_USER', userPayload)
 })

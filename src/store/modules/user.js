@@ -2,18 +2,22 @@ import * as getterNames from '../getterNames'
 import * as mutationTypes from '../mutationTypes'
 
 const state = {
-  user: null
+  displayName: null,
+  photoURL: null,
+  isAnonymous: true
 }
 
 const getters = {
   [getterNames.getUser]: (state, getters) => (
-    state.user
+    state
   )
 }
 
 const mutations = {
   [mutationTypes.UPDATE_USER] (state, user) {
-    state.user = user
+    state.displayName = user.displayName || 'Anonymous'
+    state.isAnonymous = user.isAnonymous
+    state.photoURL = user.photoURL
   }
 }
 

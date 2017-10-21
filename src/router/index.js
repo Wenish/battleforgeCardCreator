@@ -21,7 +21,7 @@ const router = new Router({
       name: 'Login',
       component: Login,
       beforeEnter: (to, from, next) => {
-        if (store.state.user.user) {
+        if (!store.state.user.isAnonymous) {
           next('/')
         } else {
           next()
@@ -32,7 +32,7 @@ const router = new Router({
       path: '/logout',
       name: 'Logout',
       beforeEnter: (to, from, next) => {
-        if (store.state.user.user) {
+        if (!store.state.user.isAnonymous) {
           firebase.auth().signOut()
           next('/')
         } else {
@@ -58,7 +58,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!store.state.user.user) {
+    if (store.state.user.isAnonymous) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
