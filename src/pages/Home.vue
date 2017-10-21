@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
-    <CardSettings></CardSettings>
     <BfCard></BfCard>
+    <CardSettings></CardSettings>
   </div>
 </template>
 

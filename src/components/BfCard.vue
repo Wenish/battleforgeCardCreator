@@ -1,389 +1,173 @@
 <template>
-  <div>
-    <div class="card-container">
-      <div class="card-background"></div>
-      <div class="card-img" :style="{ 'background-image': 'url(' + cardImage + ')' }"></div>
-      <div class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
-      <div class="card-entity-description"><span v-if="cardCharge">{{cardCharge}}</span><span v-if="cardEntityCount > 1">x{{cardEntityCount}}</span> {{cardEntityName}}</div>
-      <div class="card-affinity-tokenslot" :class="affinity"></div>
-      <div class="card-affinity-orb" :class="affinity"></div>
-      <div class="card-orb-1" :class="orbType1"></div>
-      <div class="card-orb-2" :class="orbType2"></div>
-      <div class="card-orb-3" :class="orbType3"></div>
-      <div class="card-orb-4" :class="orbType4"></div>
-      <div class="card-icon-damage" :class="[orbType1, orbType2, orbType3, orbType4, cardDamageType]"></div>
-      <div class="card-icon-health" :class="[orbType1, orbType2, orbType3, orbType4, cardHealthType]"></div>
-      <div class="card-name">{{ cardName }}</div>
-      <div class="card-cost"><span v-if="cardCost">{{ cardCost }}</span></div>
-      <div class="card-attack-dmg"><span v-if="cardDamage">{{ cardDamage }}</span></div>
-      <div class="card-health"><span v-if="cardHealth">{{ cardHealth }}</span></div>
-      <div class="card-edition-symbol" :class="editionSymbol"></div>
-      <div class="card-spells">
-        <div class="card-spell">
-          <div class="card-spell-icon-1" :class="cardSpellIcon1"></div>
-          <div class="card-spell-name">{{ cardSpellName1 }}</div>
-        </div>
-        <div class="card-spell">
-          <div class="card-spell-icon-2" :class="cardSpellIcon2"></div>
-          <div class="card-spell-name">{{ cardSpellName2 }}</div>
-        </div>
-        <div class="card-spell">
-          <div class="card-spell-icon-3" :class="cardSpellIcon3"></div>
-          <div class="card-spell-name">{{ cardSpellName3 }}</div>
-        </div>
-        <div class="card-spell">
-          <div class="card-spell-icon-4" :class="cardSpellIcon4"></div>
-          <div class="card-spell-name">{{ cardSpellName4 }}</div>
-        </div>
+  <div class="card-container">
+    <div class="card-background"></div>
+    <div class="card-img" :style="{ 'background-image': 'url(' + cardImage.url + ')' }"></div>
+    <div class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
+    <div class="card-entity-description"><span v-if="cardCharge">{{cardCharge}}</span><span v-if="cardEntityCount > 1">x{{cardEntityCount}}</span> {{cardEntityName}}</div>
+    <div class="card-affinity-tokenslot" :class="affinity"></div>
+    <div class="card-affinity-orb" :class="affinity"></div>
+    <div class="card-orb-1" :class="orbType1"></div>
+    <div class="card-orb-2" :class="orbType2"></div>
+    <div class="card-orb-3" :class="orbType3"></div>
+    <div class="card-orb-4" :class="orbType4"></div>
+    <div class="card-icon-damage" :class="[orbType1, orbType2, orbType3, orbType4, cardDamageType]"></div>
+    <div class="card-icon-health" :class="[orbType1, orbType2, orbType3, orbType4, cardHealthType]"></div>
+    <div class="card-name">{{ cardName }}</div>
+    <div class="card-cost"><span v-if="cardCost">{{ cardCost }}</span></div>
+    <div class="card-attack-dmg"><span v-if="cardDamage">{{ cardDamage }}</span></div>
+    <div class="card-health"><span v-if="cardHealth">{{ cardHealth }}</span></div>
+    <div class="card-edition-symbol" :class="editionSymbol"></div>
+    <div class="card-spells">
+      <div class="card-spell">
+        <div class="card-spell-icon-1" :class="spellIcon1"></div>
+        <div class="card-spell-name">{{ spellName1 }}</div>
+      </div>
+      <div class="card-spell">
+        <div class="card-spell-icon-2" :class="spellIcon2"></div>
+        <div class="card-spell-name">{{ spellName2 }}</div>
+      </div>
+      <div class="card-spell">
+        <div class="card-spell-icon-3" :class="spellIcon3"></div>
+        <div class="card-spell-name">{{ spellName3 }}</div>
+      </div>
+      <div class="card-spell">
+        <div class="card-spell-icon-4" :class="spellIcon4"></div>
+        <div class="card-spell-name">{{ spellName4 }}</div>
       </div>
     </div>
-      <div class="card-settings">
-        <form novalidate @submit.stop.prevent="submit">
-          <md-input-container>
-            <label>Card Name</label>
-            <md-input v-model="cardName"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label>Crad Picture</label>
-            <md-file v-on:selected="handleSelect" accept="image/*"></md-file>
-          </md-input-container>
-          <md-input-container>
-            <label>Charge</label>
-            <md-input type="number" v-model="cardCharge"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label>Entity Count</label>
-            <md-input type="number" v-model="cardEntityCount"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label>Entity Name</label>
-            <md-input v-model="cardEntityName"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label>Card Cost</label>
-            <md-input type="number" v-model="cardCost"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label for="cardDamageType">Damage Type</label>
-            <md-select name="cardDamageType" id="cardDamageType" v-model="cardDamageType">
-              <md-option v-for="item in cardDamageTypes"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label>Card Damage</label>
-            <md-input type="number" v-model="cardDamage"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label for="cardHealthType">Health Type</label>
-            <md-select name="cardHealthType" id="cardHealthType" v-model="cardHealthType">
-              <md-option v-for="item in cardHealthTypes"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label>Card Health</label>
-            <md-input type="number" v-model="cardHealth"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label for="editionSymbol">Edition Symbole</label>
-            <md-select name="editionSymbol" id="editionSymbol" v-model="editionSymbol">
-              <md-option v-for="item in editionSymbols"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label for="orbType1">Orb 1</label>
-            <md-select name="orbType1" id="orbType1" v-model="orbType1">
-              <md-option v-for="item in orbTypes"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label for="orbType2">Orb 2</label>
-            <md-select name="orbType2" id="orbType2" v-model="orbType2">
-              <md-option v-for="item in orbTypes"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label for="orbType3">Orb 3</label>
-            <md-select name="orbType3" id="orbType3" v-model="orbType3">
-              <md-option v-for="item in orbTypes"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label for="orbType4">Orb 4</label>
-            <md-select name="orbType4" id="orbType4" v-model="orbType4">
-              <md-option v-for="item in orbTypes"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label for="affinity">Affinity</label>
-            <md-select name="affinity" id="affinity" v-model="affinity">
-              <md-option v-for="item in affinities"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label for="cardSpellIcon1">Spell Icon 1</label>
-            <md-select name="cardSpellIcon1" id="cardSpellIcon1" v-model="cardSpellIcon1">
-              <md-option v-for="item in spells"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label>Card Spell 1</label>
-            <md-input v-model="cardSpellName1"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label for="cardSpellIcon2">Spell Icon 2</label>
-            <md-select name="cardSpellIcon2" id="cardSpellIcon2" v-model="cardSpellIcon2">
-              <md-option v-for="item in spells"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label>Card Spell 2</label>
-            <md-input v-model="cardSpellName2"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label for="cardSpellIcon3">Spell Icon 3</label>
-            <md-select name="cardSpellIcon3" id="cardSpellIcon3" v-model="cardSpellIcon3">
-              <md-option v-for="item in spells"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label>Card Spell 3</label>
-            <md-input v-model="cardSpellName3"></md-input>
-          </md-input-container>
-          <md-input-container>
-            <label for="cardSpellIcon4">Spell Icon 4</label>
-            <md-select name="cardSpellIcon4" id="cardSpellIcon4" v-model="cardSpellIcon4">
-              <md-option v-for="item in spells"
-              :key="item.value"
-              :value="item.value">{{ item.label }}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label>Card Spell 4</label>
-            <md-input v-model="cardSpellName4"></md-input>
-          </md-input-container>
-        </form>
-      </div>
   </div>
 </template>
 
 <script>
-var orbTypes = [
-  {
-    value: 'neutral',
-    label: 'Neutral'
-  }, {
-    value: 'fire',
-    label: 'Fire'
-  }, {
-    value: 'frost',
-    label: 'Frost'
-  }, {
-    value: 'nature',
-    label: 'Nature'
-  }, {
-    value: 'shadow',
-    label: 'Shadow'
-  }
-]
-
-var cardDamageTypes = [
-  {
-   value: 'ms',
-   label: 'Melee S'
-  }, {
-    value: 'mm',
-    label: 'Melee M'
-  }, {
-    value: 'ml',
-    label: 'Melee L'
-  }, {
-    value: 'mxl',
-    label: 'Melee XL'
-  }, {
-    value: 'rs',
-    label: 'Range S'
-  }, {
-    value: 'rm',
-    label: 'Range M'
-  }, {
-    value: 'rl',
-    label: 'Range L'
-  }, {
-    value: 'rxl',
-    label: 'Range XL'
-  }, {
-    value: 'spec',
-    label: 'Spec'
-  }
-]
-
-var cardHealthTypes = [
-  {
-    value: 'hpBuilding',
-    label: 'HP building'
-  }, {
-    value: 'hps',
-    label: 'HP S'
-  }, {
-    value: 'hpm',
-    label: 'HP M'
-  }, {
-    value: 'hpl',
-    label: 'HP L'
-  }, {
-    value: 'hpxl',
-    label: 'HP XL'
-  }
-]
-
-var editionSymbols = [
-  {
-    value: 'amii_common',
-    label: 'Amii Common'
-  }, {
-    value: 'amii_uncommon',
-    label: 'Amii Uncommon'
-  }, {
-    value: 'amii_rare',
-    label: 'Amii Rare'
-  }, {
-    value: 'amii_ultra_rare',
-    label: 'Amii ultra Rare'
-  }, {
-    value: 'lostsouls_common',
-    label: 'Lostsouls Common'
-  }, {
-    value: 'lostsouls_uncommon',
-    label: 'Lostsouls Uncommon'
-  }, {
-    value: 'lostsouls_rare',
-    label: 'Lostsouls Rare'
-  }, {
-    value: 'lostsouls_ultra_rare',
-    label: 'Lostsouls ultra Rare'
-  }, {
-    value: 'renegade_common',
-    label: 'Renegade Common'
-  }, {
-    value: 'renegade_uncommon',
-    label: 'Renegade Uncommon'
-  }, {
-    value: 'renegade_rare',
-    label: 'Renegade Rare'
-  }, {
-    value: 'renegade_ultra_rare',
-    label: 'Renegade ultra Rare'
-  }, {
-    value: 'twilight_common',
-    label: 'Twilight Common'
-  }, {
-    value: 'twilight_uncommon',
-    label: 'Twilight Uncommon'
-  }, {
-    value: 'twilight_rare',
-    label: 'Twilight Rare'
-  }, {
-    value: 'twilight_ultra_rare',
-    label: 'Twilight ultra Rare'
-  }
-]
-
-var affinities = [
-  {
-    value: 'fire',
-    label: 'Fire'
-  }, {
-    value: 'frost',
-    label: 'Frost'
-  }, {
-    value: 'nature',
-    label: 'Nature'
-  }, {
-    value: 'shadow',
-    label: 'Shadow'
-  }
-]
-
-var spells = [
-  {
-    value: 'active-special',
-    label: 'Active Special'
-  }, {
-    value: 'autocast',
-    label: 'Autocast'
-  }, {
-    value: 'godspell',
-    label: 'Godspell'
-  }, {
-    value: 'mode-change',
-    label: 'Mode Change'
-  }, {
-    value: 'passive-special',
-    label: 'Passive Special'
-  }
-]
+import spells from '@/common/spells'
 
 export default {
   name: 'bfCard',
-  data () {
-    return {
-      orbTypes: orbTypes,
-      orbType1: '',
-      orbType2: '',
-      orbType3: '',
-      orbType4: '',
-      cardName: '',
-      cardImage: '',
-      cardCost: 0,
-      cardCharge: 0,
-      cardEntityCount: 1,
-      cardEntityName: '',
-      cardDamageTypes: cardDamageTypes,
-      cardDamageType: '',
-      cardDamage: 0,
-      cardHealthTypes: cardHealthTypes,
-      cardHealthType: '',
-      cardHealth: 0,
-      editionSymbols: editionSymbols,
-      editionSymbol: '',
-      affinities: affinities,
-      affinity: '',
-      fileList: [],
-      spells: spells,
-      cardSpellIcon1: '',
-      cardSpellIcon2: '',
-      cardSpellIcon3: '',
-      cardSpellIcon4: '',
-      cardSpellName1: '',
-      cardSpellName2: '',
-      cardSpellName3: '',
-      cardSpellName4: ''
+  computed: {
+    cardName: {
+      get () {
+        return this.$store.state.editCard.cardName
+      }
+    },
+    cardImage: {
+      get () {
+        return this.$store.state.editCard.cardImage
+      }
+    },
+    cardCost: {
+      get () {
+        return this.$store.state.editCard.cardCost
+      }
+    },
+    orbType1: {
+      get () {
+        return this.$store.state.editCard.orbType1
+      }
+    },
+    orbType2: {
+      get () {
+        return this.$store.state.editCard.orbType2
+      }
+    },
+    orbType3: {
+      get () {
+        return this.$store.state.editCard.orbType3
+      }
+    },
+    orbType4: {
+      get () {
+        return this.$store.state.editCard.orbType4
+      }
+    },
+    cardCharge: {
+      get () {
+        return this.$store.state.editCard.charge
+      }
+    },
+    cardEntityCount: {
+      get () {
+        return this.$store.state.editCard.entityCount
+      }
+    },
+    cardEntityName: {
+      get () {
+        return this.$store.state.editCard.entityName
+      }
+    },
+    cardDamageType: {
+      get () {
+        return this.$store.state.editCard.damageType
+      }
+    },
+    cardDamage: {
+      get () {
+        return this.$store.state.editCard.damage
+      }
+    },
+    cardHealthType: {
+      get () {
+        return this.$store.state.editCard.healthType
+      }
+    },
+    cardHealth: {
+      get () {
+        return this.$store.state.editCard.health
+      }
+    },
+    editionSymbol: {
+      get () {
+        return this.$store.state.editCard.editionSymbol
+      }
+    },
+    affinity: {
+      get () {
+        return this.$store.state.editCard.affinity
+      }
+    },
+    spellIcon1: {
+      get () {
+        return this.$store.state.editCard.spellIcon1
+      }
+    },
+    spellIcon2: {
+      get () {
+        return this.$store.state.editCard.spellIcon2
+      }
+    },
+    spellIcon3: {
+      get () {
+        return this.$store.state.editCard.spellIcon3
+      }
+    },
+    spellIcon4: {
+      get () {
+        return this.$store.state.editCard.spellIcon4
+      }
+    },
+    spellName1: {
+      get () {
+        return this.$store.state.editCard.spellName1
+      }
+    },
+    spellName2: {
+      get () {
+        return this.$store.state.editCard.spellName2
+      }
+    },
+    spellName3: {
+      get () {
+        return this.$store.state.editCard.spellName3
+      }
+    },
+    spellName4: {
+      get () {
+        return this.$store.state.editCard.spellName4
+      }
     }
   },
   methods: {
     handleSelect(file, fileList) {
+      console.log(file);
         this.cardImage = URL.createObjectURL(file[0]);
     }
   }
@@ -1362,6 +1146,7 @@ export default {
 }
 
 .card-cost {
+  text-align: center;
   color: white;
   position: absolute;
   top: 17px;
