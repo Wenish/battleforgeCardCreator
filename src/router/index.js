@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase'
 import store from '@/store'
-import Home from '@/pages/Home'
+import CardEditor from '@/pages/CardEditor'
 import Login from '@/pages/Login'
 import Feed from '@/pages/Feed'
 import Impressum from '@/pages/Impressum'
@@ -14,7 +14,7 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: CardEditor
     },
     {
       path: '/login',

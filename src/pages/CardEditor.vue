@@ -34,7 +34,7 @@ import CardSettings from '@/components/CardSettings'
 import BfCard from '@/components/BfCard'
 
 export default {
-  name: 'home',
+  name: 'cardEditor',
   components: {
     CardSettings,
     BfCard
