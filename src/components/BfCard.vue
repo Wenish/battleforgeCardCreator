@@ -1,21 +1,24 @@
 <template>
   <div class="card-container">
     <div class="card-background"></div>
-    <div class="card-img" :style="{ 'background-image': 'url(' + cardImage.url + ')' }"></div>
+    <div class="card-img" :style="{ 'background-image': 'url(' + cardImageUrl + ')' }"></div>
     <div class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
-    <div class="card-entity-description"><span v-if="cardCharge">{{cardCharge}}</span><span v-if="cardEntityCount > 1">x{{cardEntityCount}}</span> {{cardEntityName}}</div>
+    <div class="card-entity-description">
+      <span v-if="charge">{{charge}}</span>
+      <span v-if="entityCount > 1">x{{entityCount}}</span> {{entityName}}
+    </div>
     <div class="card-affinity-tokenslot" :class="affinity"></div>
     <div class="card-affinity-orb" :class="affinity"></div>
     <div class="card-orb-1" :class="orbType1"></div>
     <div class="card-orb-2" :class="orbType2"></div>
     <div class="card-orb-3" :class="orbType3"></div>
     <div class="card-orb-4" :class="orbType4"></div>
-    <div class="card-icon-damage" :class="[orbType1, orbType2, orbType3, orbType4, cardDamageType]"></div>
-    <div class="card-icon-health" :class="[orbType1, orbType2, orbType3, orbType4, cardHealthType]"></div>
+    <div class="card-icon-damage" :class="[orbType1, orbType2, orbType3, orbType4, damageType]"></div>
+    <div class="card-icon-health" :class="[orbType1, orbType2, orbType3, orbType4, healthType]"></div>
     <div class="card-name">{{ cardName }}</div>
     <div class="card-cost"><span v-if="cardCost">{{ cardCost }}</span></div>
-    <div class="card-attack-dmg"><span v-if="cardDamage">{{ cardDamage }}</span></div>
-    <div class="card-health"><span v-if="cardHealth">{{ cardHealth }}</span></div>
+    <div class="card-attack-dmg"><span v-if="damage">{{ damage }}</span></div>
+    <div class="card-health"><span v-if="health">{{ health }}</span></div>
     <div class="card-edition-symbol" :class="editionSymbol"></div>
     <div class="card-spells">
       <div class="card-spell">
@@ -43,134 +46,32 @@ import spells from '@/common/spells'
 
 export default {
   name: 'bfCard',
-  computed: {
-    cardName: {
-      get () {
-        return this.$store.state.editCard.cardName
-      }
-    },
-    cardImage: {
-      get () {
-        return this.$store.state.editCard.cardImage
-      }
-    },
-    cardCost: {
-      get () {
-        return this.$store.state.editCard.cardCost
-      }
-    },
-    orbType1: {
-      get () {
-        return this.$store.state.editCard.orbType1
-      }
-    },
-    orbType2: {
-      get () {
-        return this.$store.state.editCard.orbType2
-      }
-    },
-    orbType3: {
-      get () {
-        return this.$store.state.editCard.orbType3
-      }
-    },
-    orbType4: {
-      get () {
-        return this.$store.state.editCard.orbType4
-      }
-    },
-    cardCharge: {
-      get () {
-        return this.$store.state.editCard.charge
-      }
-    },
-    cardEntityCount: {
-      get () {
-        return this.$store.state.editCard.entityCount
-      }
-    },
-    cardEntityName: {
-      get () {
-        return this.$store.state.editCard.entityName
-      }
-    },
-    cardDamageType: {
-      get () {
-        return this.$store.state.editCard.damageType
-      }
-    },
-    cardDamage: {
-      get () {
-        return this.$store.state.editCard.damage
-      }
-    },
-    cardHealthType: {
-      get () {
-        return this.$store.state.editCard.healthType
-      }
-    },
-    cardHealth: {
-      get () {
-        return this.$store.state.editCard.health
-      }
-    },
-    editionSymbol: {
-      get () {
-        return this.$store.state.editCard.editionSymbol
-      }
-    },
-    affinity: {
-      get () {
-        return this.$store.state.editCard.affinity
-      }
-    },
-    spellIcon1: {
-      get () {
-        return this.$store.state.editCard.spellIcon1
-      }
-    },
-    spellIcon2: {
-      get () {
-        return this.$store.state.editCard.spellIcon2
-      }
-    },
-    spellIcon3: {
-      get () {
-        return this.$store.state.editCard.spellIcon3
-      }
-    },
-    spellIcon4: {
-      get () {
-        return this.$store.state.editCard.spellIcon4
-      }
-    },
-    spellName1: {
-      get () {
-        return this.$store.state.editCard.spellName1
-      }
-    },
-    spellName2: {
-      get () {
-        return this.$store.state.editCard.spellName2
-      }
-    },
-    spellName3: {
-      get () {
-        return this.$store.state.editCard.spellName3
-      }
-    },
-    spellName4: {
-      get () {
-        return this.$store.state.editCard.spellName4
-      }
-    }
-  },
-  methods: {
-    handleSelect(file, fileList) {
-      console.log(file);
-        this.cardImage = URL.createObjectURL(file[0]);
-    }
-  }
+  props: [
+    'cardName',
+    'cardImageUrl',
+    'cardCost',
+    'orbType1',
+    'orbType2',
+    'orbType3',
+    'orbType4',
+    'charge',
+    'entityCount',
+    'entityName',
+    'damageType',
+    'damage',
+    'healthType',
+    'health',
+    'editionSymbol',
+    'affinity',
+    'spellIcon1',
+    'spellIcon2',
+    'spellIcon3',
+    'spellIcon4',
+    'spellName1',
+    'spellName2',
+    'spellName3',
+    'spellName4'
+  ]
 }
 </script>
 
