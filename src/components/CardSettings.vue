@@ -12,38 +12,54 @@
       <label>Card Cost</label>
       <md-input type="number" v-model="cardCost"></md-input>
     </md-input-container>
-    <md-input-container>
-      <label for="orbType1">Orb 1</label>
-      <md-select name="orbType1" id="orbType1" v-model="orbType1">
-        <md-option v-for="item in orbTypes"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label for="orbType2">Orb 2</label>
-      <md-select name="orbType2" id="orbType2" v-model="orbType2">
-        <md-option v-for="item in orbTypes"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label for="orbType3">Orb 3</label>
-      <md-select name="orbType3" id="orbType3" v-model="orbType3">
-        <md-option v-for="item in orbTypes"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label for="orbType4">Orb 4</label>
-      <md-select name="orbType4" id="orbType4" v-model="orbType4">
-        <md-option v-for="item in orbTypes"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
+
+    <md-layout md-gutter>
+      <md-layout>
+        <md-input-container>
+          <label for="orbType1">Orb 1</label>
+          <md-select name="orbType1" id="orbType1" v-model="orbType1">
+            <md-option v-for="item in orbTypes"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+
+      <md-layout>
+        <md-input-container>
+          <label for="orbType2">Orb 2</label>
+          <md-select name="orbType2" id="orbType2" v-model="orbType2">
+            <md-option v-for="item in orbTypes"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+
+      <md-layout>
+        <md-input-container>
+          <label for="orbType3">Orb 3</label>
+          <md-select name="orbType3" id="orbType3" v-model="orbType3">
+            <md-option v-for="item in orbTypes"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+
+      <md-layout>
+        <md-input-container>
+          <label for="orbType4">Orb 4</label>
+          <md-select name="orbType4" id="orbType4" v-model="orbType4">
+            <md-option v-for="item in orbTypes"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+
+    </md-layout>
+
     <md-input-container>
       <label>Charge</label>
       <md-input type="number" v-model="charge"></md-input>
@@ -56,30 +72,49 @@
       <label>Entity Name</label>
       <md-input v-model="entityName"></md-input>
     </md-input-container>
-    <md-input-container>
-      <label for="damageType">Damage Type</label>
-      <md-select name="damageType" id="damageType" v-model="damageType">
-        <md-option v-for="item in damageTypes"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label>Damage</label>
-      <md-input type="number" v-model="damage"></md-input>
-    </md-input-container>
-    <md-input-container>
-      <label for="healthType">Health Type</label>
-      <md-select name="healthType" id="healthType" v-model="healthType">
-        <md-option v-for="item in healthTypes"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label>Health</label>
-      <md-input type="number" v-model="health"></md-input>
-    </md-input-container>
+
+
+    <md-layout md-gutter>
+      <md-layout>
+        <md-input-container>
+          <label for="damageType">Damage Type</label>
+          <md-select name="damageType" id="damageType" v-model="damageType">
+            <md-option v-for="item in damageTypes"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+      <md-layout>
+        <md-input-container>
+          <label>Damage</label>
+          <md-input type="number" v-model="damage"></md-input>
+        </md-input-container>
+      </md-layout>
+    </md-layout>
+
+    <md-layout md-gutter>
+      <md-layout>
+        <md-input-container>
+          <label for="healthType">Health Type</label>
+          <md-select name="healthType" id="healthType" v-model="healthType">
+            <md-option v-for="item in healthTypes"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+      <md-layout>
+        <md-input-container>
+          <label>Health</label>
+          <md-input type="number" v-model="health"></md-input>
+        </md-input-container>
+      </md-layout>
+    </md-layout>
+
+
+
+
     <md-input-container>
       <label for="editionSymbol">Edition Symbole</label>
       <md-select name="editionSymbol" id="editionSymbol" v-model="editionSymbol">
@@ -96,54 +131,88 @@
         :value="item.value">{{ item.label }}</md-option>
       </md-select>
     </md-input-container>
-    <md-input-container>
-      <label for="spellIcon1">Spell Icon 1</label>
-      <md-select name="spellIcon1" id="spellIcon1" v-model="spellIcon1">
-        <md-option v-for="item in spells"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label>Spell 1</label>
-      <md-input v-model="spellName1"></md-input>
-    </md-input-container>
-    <md-input-container>
-      <label for="spellIcon2">Spell Icon 2</label>
-      <md-select name="spellIcon2" id="spellIcon2" v-model="spellIcon2">
-        <md-option v-for="item in spells"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label>Spell 2</label>
-      <md-input v-model="spellName2"></md-input>
-    </md-input-container>
-    <md-input-container>
-      <label for="spellIcon3">Spell Icon 3</label>
-      <md-select name="spellIcon3" id="spellIcon3" v-model="spellIcon3">
-        <md-option v-for="item in spells"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label>Spell 3</label>
-      <md-input v-model="spellName3"></md-input>
-    </md-input-container>
-    <md-input-container>
-      <label for="spellIcon4">Spell Icon 4</label>
-      <md-select name="spellIcon4" id="spellIcon4" v-model="spellIcon4">
-        <md-option v-for="item in spells"
-        :key="item.value"
-        :value="item.value">{{ item.label }}</md-option>
-      </md-select>
-    </md-input-container>
-    <md-input-container>
-      <label>Spell 4</label>
-      <md-input v-model="spellName4"></md-input>
-    </md-input-container>
+
+    <md-layout md-gutter>
+      <md-layout>
+        <md-input-container>
+          <label for="spellIcon1">Spell Icon 1</label>
+          <md-select name="spellIcon1" id="spellIcon1" v-model="spellIcon1">
+            <md-option v-for="item in spells"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+
+      <md-layout>
+        <md-input-container>
+          <label>Spell 1</label>
+          <md-input v-model="spellName1"></md-input>
+        </md-input-container>
+      </md-layout>
+    </md-layout>
+
+    <md-layout md-gutter>
+      <md-layout>
+        <md-input-container>
+          <label for="spellIcon2">Spell Icon 2</label>
+          <md-select name="spellIcon2" id="spellIcon2" v-model="spellIcon2">
+            <md-option v-for="item in spells"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+
+      <md-layout>
+        <md-input-container>
+          <label>Spell 2</label>
+          <md-input v-model="spellName2"></md-input>
+        </md-input-container>
+      </md-layout>
+    </md-layout>
+
+    <md-layout md-gutter>
+      <md-layout>
+        <md-input-container>
+          <label for="spellIcon3">Spell Icon 3</label>
+          <md-select name="spellIcon3" id="spellIcon3" v-model="spellIcon3">
+            <md-option v-for="item in spells"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+
+      <md-layout>
+        <md-input-container>
+          <label>Spell 3</label>
+          <md-input v-model="spellName3"></md-input>
+        </md-input-container>
+      </md-layout>
+    </md-layout>
+
+
+    <md-layout md-gutter>
+      <md-layout>
+        <md-input-container>
+          <label for="spellIcon4">Spell Icon 4</label>
+          <md-select name="spellIcon4" id="spellIcon4" v-model="spellIcon4">
+            <md-option v-for="item in spells"
+            :key="item.value"
+            :value="item.value">{{ item.label }}</md-option>
+          </md-select>
+        </md-input-container>
+      </md-layout>
+
+      <md-layout>
+        <md-input-container>
+          <label>Spell 4</label>
+          <md-input v-model="spellName4"></md-input>
+        </md-input-container>
+      </md-layout>
+    </md-layout>
+
   </form>
 </template>
 

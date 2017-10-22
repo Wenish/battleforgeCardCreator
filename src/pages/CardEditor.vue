@@ -236,7 +236,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .page-container{
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
 }
 </style>
