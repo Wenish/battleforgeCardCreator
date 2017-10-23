@@ -9,6 +9,9 @@ export const CLOSE_SIDENAV = 'CLOSE_SIDENAV'
 export const OPEN_SIDENAV = 'OPEN_SIDENAV'
 export const TOGGLE_SIDENAV = 'TOGGLE_SIDENAV'
 
+//cards
+export const UPDATE_CARDS = 'UPDATE_CARDS'
+
 //editCard
 export const UPDATE_CARDNAME = 'UPDATE_CARDNAME'
 export const UPDATE_CARDIMAGE = 'UPDATE_CARDIMAGE'

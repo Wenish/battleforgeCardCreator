@@ -11,12 +11,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import BfCard from '@/components/BfCard'
+
 export default {
   name: 'feed',
+  components: {
+    BfCard
+  },
   data () {
     return {
       msg: 'Feed'
     }
+  },
+  computed: {
+    ...mapState(['cards'])
   }
 }
 </script>
