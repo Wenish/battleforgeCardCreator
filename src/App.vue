@@ -14,7 +14,10 @@ import Sidenav from '@/components/Sidenav'
 
 export default {
   name: 'app',
-  components: { Navbar, Sidenav }
+  components: { Navbar, Sidenav },
+  created () {
+    this.$store.dispatch('GET_FIREBASE_AUTH_CHANGE')
+  }
 }
 </script>
 
