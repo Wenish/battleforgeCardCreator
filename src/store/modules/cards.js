@@ -3,7 +3,7 @@ import * as mutationTypes from '../mutationTypes'
 import firebase from 'firebase'
 
 const state = {
-  cards: []
+  cards: {}
 }
 
 

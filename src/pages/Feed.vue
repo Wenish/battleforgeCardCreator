@@ -1,12 +1,32 @@
 <template>
   <div class="page-container">
-    {{ msg }}
-    <md-button class="md-raised">Default</md-button>
-    <md-button class="md-raised md-primary">Primary</md-button>
-    <md-button class="md-raised md-accent">Accent</md-button>
-    <md-button class="md-raised md-warn">Warn</md-button>
-    <md-button class="md-raised md-primary" disabled>Disabled</md-button>
-    <md-button class="md-raised md-dense">Dense</md-button>
+    <BfCard v-for="(card, key) in cards.cards"
+            :key="key"
+            :card-name="card.cardName"
+            :cardImageUrl="card.cardImageUrl"
+            :cardCost="card.cardCost"
+            :orbType1="card.orbType1"
+            :orbType2="card.orbType2"
+            :orbType3="card.orbType3"
+            :orbType4="card.orbType4"
+            :charge="card.charge"
+            :entityCount="card.entityCount"
+            :entityName="card.entityName"
+            :damageType="card.damageType"
+            :damage="card.damage"
+            :healthType="card.healthType"
+            :health="card.health"
+            :editionSymbol="card.editionSymbol"
+            :affinity="card.affinity"
+            :spellIcon1="card.spellIcon1"
+            :spellIcon2="card.spellIcon2"
+            :spellIcon3="card.spellIcon3"
+            :spellIcon4="card.spellIcon4"
+            :spellName1="card.spellName1"
+            :spellName2="card.spellName2"
+            :spellName3="card.spellName3"
+            :spellName4="card.spellName4"
+            ></BfCard>
   </div>
 </template>
 
@@ -18,11 +38,6 @@ export default {
   name: 'feed',
   components: {
     BfCard
-  },
-  data () {
-    return {
-      msg: 'Feed'
-    }
   },
   computed: {
     ...mapState(['cards'])
