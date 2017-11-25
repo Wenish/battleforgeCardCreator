@@ -39,6 +39,9 @@ export default {
   components: {
     BfCard
   },
+  created() {
+    this.$store.dispatch('GET_CARDS')
+  },
   computed: {
     ...mapState(['cards'])
   }

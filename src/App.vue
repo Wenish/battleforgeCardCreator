@@ -17,7 +17,6 @@ export default {
   components: { Navbar, Sidenav },
   created () {
     this.$store.dispatch('GET_FIREBASE_AUTH_CHANGE')
-    this.$store.dispatch('GET_CARDS')
   }
 }
 </script>
