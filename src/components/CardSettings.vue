@@ -438,4 +438,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+form {
+  background: white;
+  padding: 15px 20px;
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+}
 </style>

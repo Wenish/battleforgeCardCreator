@@ -22,6 +22,10 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #f2f2f2 !important;
+}
+
 #app {
   font-family: Tahoma, Verdana, Segoe, sans-serif;
   -webkit-font-smoothing: antialiased;
