@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Wenish/battleforgeCardCreator.svg?branch=master)](https://travis-ci.org/Wenish/battleforgeCardCreator)
+
 # battleforge-card-creator
 
 > A Vue.js project
