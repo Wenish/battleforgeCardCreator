@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    No Cards RIP
+    No Cardz RIP
   </div>
 </template>
 
