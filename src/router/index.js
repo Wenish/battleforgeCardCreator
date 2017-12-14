@@ -6,10 +6,12 @@ import CardEditor from '@/pages/CardEditor'
 import Login from '@/pages/Login'
 import Feed from '@/pages/Feed'
 import Impressum from '@/pages/Impressum'
+import MyCards from '@/pages/MyCards'
 
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -39,6 +41,12 @@ const router = new Router({
           next('/login')
         }
       }
+    },
+    {
+      path: '/mycards',
+      name: 'MyCards',
+      component: MyCards,
+      meta: { requiresAuth: true }
     },
     {
       path: '/feed',

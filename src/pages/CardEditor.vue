@@ -25,6 +25,12 @@
             :spellName3="spellName3"
             :spellName4="spellName4"
             ></BfCard>
+    <div class="md-layout md-align-center">
+        <md-button class="md-raised md-primary center" v-if="!user.isAnonymous">Save Card</md-button>
+        <router-link to="/login?redirect=/" v-if="user.isAnonymous">
+          <md-button class="md-raised md-primary center">Login to save your card</md-button>
+        </router-link>
+    </div>
     <CardSettings :card-name="cardName"></CardSettings>
   </div>
 </template>
@@ -32,6 +38,7 @@
 <script>
 import CardSettings from '@/components/CardSettings'
 import BfCard from '@/components/BfCard'
+import { mapState } from 'vuex'
 
 export default {
   name: 'cardEditor',
@@ -40,6 +47,7 @@ export default {
     BfCard
   },
   computed: {
+    ...mapState(['user']),
     cardName: {
       get () {
         return this.$store.state.editCard.cardName

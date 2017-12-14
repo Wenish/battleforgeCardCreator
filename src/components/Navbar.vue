@@ -19,6 +19,7 @@
 
       <md-menu-content>
         <md-menu-item disabled>{{ user.displayName }}</md-menu-item>
+        <md-menu-item><router-link to="/mycards">My Cards</router-link></md-menu-item>
         <md-menu-item><router-link to="/logout">Logout</router-link></md-menu-item>
       </md-menu-content>
     </md-menu>
