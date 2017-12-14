@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "8.9.3"
+  - "4.8.7"
 script:
   - echo "Deploying!"
 install:
