@@ -7,7 +7,6 @@ import firebase from 'firebase'
 const state = {
   cards: {},
   activeCard: null,
-  activeUserId: null,
 }
 
 
@@ -15,10 +14,16 @@ const getters = {
     [getterNames.getCardById]: (state, getters) => state.cards[state.activeCard],
     [getterNames.getCardsByUserId]: (state, getters) => {
       var uid = getters.getCurrentUser.uid;
-      console.log('User Id: ' + uid);
-      console.log('cards:')
-      console.log(state.cards)
-      return state.cards
+      var cards = {};
+      Object.entries(state.cards).forEach(([key, val]) => {
+          if(val.uid == uid) {
+            cards = {
+              ...cards,
+              [key]: val,
+            }
+          }
+      });
+      return cards
     }
 }
 
@@ -32,6 +37,10 @@ const actions = {
   async [actionTypes.GET_CARD_BY_ID]  ({commit, state}, cardId) {
     var cardData = await api.getCardById(cardId)
     commit('ADD_CARD', cardData)
+  },
+  async [actionTypes.GET_CARDS_BY_USER_ID] ({commit, state, getters}, userId) {
+    var dataSnap = await api.getCardsByUserId(userId);
+    commit('UPDATE_CARDS', dataSnap.val());
   }
 }
 

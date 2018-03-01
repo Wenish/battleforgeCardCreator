@@ -16,5 +16,8 @@ export default {
   },
   getCardById (cardId) {
     return firebase.database().ref('/cards/' + cardId).once('value');
-  }
+  },
+  getCardsByUserId (userId) {
+    return firebase.database().ref('cards').orderByChild('uid').equalTo(userId).once('value');
+  },
 }
