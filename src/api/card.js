@@ -4,7 +4,7 @@ export default {
   saveCard (cardData) {
     console.log(firebase)
     cardData.created = firebase.database.ServerValue.TIMESTAMP;
-    cardData.userid = firebase.auth().currentUser.uid;
+    cardData.uid = firebase.auth().currentUser.uid;
 
     // Get a key for a new card.
     var newCardKey = firebase.database().ref().child('cards').push().key;

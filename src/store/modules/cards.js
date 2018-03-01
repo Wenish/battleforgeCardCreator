@@ -6,12 +6,20 @@ import firebase from 'firebase'
 
 const state = {
   cards: {},
-  activeCard: null
+  activeCard: null,
+  activeUserId: null,
 }
 
 
 const getters = {
-    [getterNames.getCardById]: (state, getters) => state.cards[state.activeCard]
+    [getterNames.getCardById]: (state, getters) => state.cards[state.activeCard],
+    [getterNames.getCardsByUserId]: (state, getters) => {
+      var uid = getters.getCurrentUser.uid;
+      console.log('User Id: ' + uid);
+      console.log('cards:')
+      console.log(state.cards)
+      return state.cards
+    }
 }
 
 const actions = {
