@@ -13,5 +13,8 @@ export default {
     updates['/cards/' + newCardKey] = cardData;
 
     return firebase.database().ref().update(updates);
+  },
+  getCardById (cardId) {
+    return firebase.database().ref('/cards/' + cardId).once('value');
   }
 }

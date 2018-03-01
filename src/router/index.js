@@ -7,6 +7,7 @@ import Login from '@/pages/Login'
 import Feed from '@/pages/Feed'
 import Impressum from '@/pages/Impressum'
 import MyCards from '@/pages/MyCards'
+import Card from '@/pages/Card'
 
 Vue.use(Router)
 
@@ -52,6 +53,12 @@ const router = new Router({
       path: '/feed',
       name: 'Feed',
       component: Feed,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/card/:cardId',
+      name: 'Card',
+      component: Card,
       meta: { requiresAuth: true }
     },
     {
