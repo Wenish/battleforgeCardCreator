@@ -4,9 +4,15 @@
       <label>Card Name</label>
       <md-input v-model="cardName"></md-input>
     </md-input-container>
+    <!--
     <md-input-container>
       <label>Crad Picture</label>
       <md-file v-on:selected="handleSelect" v-model="cardImage.name" accept="image/*"></md-file>
+    </md-input-container>
+    -->
+    <md-input-container>
+      <label>Card Picture Url</label>
+      <md-input v-model="cardImageUrl"></md-input>
     </md-input-container>
     <md-input-container>
       <label>Card Cost</label>
@@ -246,9 +252,19 @@ export default {
         this.$store.commit('UPDATE_CARDNAME', value)
       }
     },
+    /*
     cardImage: {
       get () {
         return this.$store.state.editCard.cardImage
+      }
+    },
+    */
+    cardImageUrl: {
+      get () {
+        return this.$store.state.editCard.cardImageUrl
+      },
+      set (value) {
+        this.$store.commit('UPDATE_CARDIMAGEURL', value)
       }
     },
     cardCost: {
@@ -428,11 +444,13 @@ export default {
       }
     }
   },
+  /*
   methods: {
     handleSelect(file) {
         this.$store.commit('UPDATE_CARDIMAGE', file[0])
     }
   }
+  */
 }
 </script>
 

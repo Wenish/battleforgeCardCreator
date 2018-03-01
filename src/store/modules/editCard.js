@@ -1,15 +1,18 @@
+import api from '../../api/card'
 import * as actionTypes from '../actionTypes'
 import * as getterNames from '../getterNames'
 import * as mutationTypes from '../mutationTypes'
-import orbTypes from '@/common/orbTypes'
 
 const state = {
   cardName: '',
+  /*
   cardImage: {
     file: null,
     name: '',
     url: ''
   },
+  */
+  cardImageUrl: '',
   cardCost: 0,
   orbType1: '',
   orbType2: '',
@@ -34,15 +37,30 @@ const state = {
   spellName4: ''
 }
 
+const actions = {
+  async [actionTypes.SAVE_CARD] ({commit, state}) {
+    var cardData = {
+      ...state
+    }
+    await api.saveCard(cardData)
+    console.log('Card Saved')
+  }
+}
+
 const mutations = {
   [mutationTypes.UPDATE_CARDNAME] (state, value) {
     state.cardName = value
   },
+  /*
   [mutationTypes.UPDATE_CARDIMAGE] (state, file) {
       state.cardImage.file = file
       state.cardImage.url = URL.createObjectURL(file)
       state.cardImage.name = file.name
 
+  },
+  */
+  [mutationTypes.UPDATE_CARDIMAGEURL] (state, value) {
+    state.cardImageUrl = value
   },
   [mutationTypes.UPDATE_CARDCOST] (state, value) {
     state.cardCost = Number(value)
@@ -114,5 +132,6 @@ const mutations = {
 
 export default {
   state,
+  actions,
   mutations
 }
