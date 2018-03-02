@@ -59,7 +59,6 @@ const router = new Router({
       path: '/card/:cardId',
       name: 'Card',
       component: Card,
-      meta: { requiresAuth: true }
     },
     {
       path: '/impressum',
