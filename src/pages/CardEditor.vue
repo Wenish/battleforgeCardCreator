@@ -26,7 +26,7 @@
             :spellName4="editCard.spellName4"
             ></BfCard>
     <div class="md-layout md-align-center">
-        <md-button class="md-raised md-primary center" v-if="!user.isAnonymous" @click="SAVE_CARD">Save Card</md-button>
+        <md-button class="md-raised md-primary center" v-if="!user.isAnonymous && (editCard.cardName && editCard.cardImageUrl)" @click="SAVE_CARD">Save Card</md-button>
         <router-link to="/login?redirect=/" v-if="user.isAnonymous">
           <md-button class="md-raised md-primary center">Login to save your card</md-button>
         </router-link>

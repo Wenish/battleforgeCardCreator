@@ -4,8 +4,7 @@
     <div class="card-img" :style="{ 'background-image': 'url(' + cardImageUrl + ')' }"></div>
     <div class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
     <div class="card-entity-description">
-      <span v-if="charge">{{charge}}</span>
-      <span v-if="entityCount > 1">x{{entityCount}}</span> {{entityName}}
+      <span v-if="charge">{{charge}}</span><span v-if="entityCount > 1">x{{entityCount}}</span> {{entityName}}
     </div>
     <div class="card-affinity-tokenslot" :class="affinity"></div>
     <div class="card-affinity-orb" :class="affinity"></div>
@@ -105,6 +104,7 @@ export default {
     height: 408px;
     left: -200px;
     overflow: hidden;
+    pointer-events: none;
   }
 }
 
