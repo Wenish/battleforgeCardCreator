@@ -31,17 +31,11 @@
           v-if="!user.isAnonymous"
           v-bind:disabled="!(!!editCard.cardName && !!editCard.cardImageUrl)"
           @click="SAVE_CARD">Save Card</md-button>
-
-          <md-button
-          class="md-raised md-primary center"
-          v-if="user.isAnonymous && !(!!editCard.cardName && !!editCard.cardImageUrl)"
-          v-bind:disabled="!(!!editCard.cardName && !!editCard.cardImageUrl)">Login to save your card</md-button>
-
         <router-link
-          to="/login?redirect=/" v-if="user.isAnonymous && (!!editCard.cardName && !!editCard.cardImageUrl)">
-            <md-button
-            class="md-raised md-primary center">Login to save your card</md-button>
-        </router-link>
+          tag="md-button"
+          to="/login?redirect=/"
+          v-if="user.isAnonymous"
+          class="md-raised md-primary center" v-bind:disabled="!(!!editCard.cardName && !!editCard.cardImageUrl)">Login to save your card</router-link>
     </div>
     <CardSettings></CardSettings>
   </div>
