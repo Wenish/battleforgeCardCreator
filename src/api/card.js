@@ -2,7 +2,6 @@ import firebase from 'firebase'
 
 export default {
   saveCard (cardData) {
-    console.log(firebase)
     cardData.created = firebase.database.ServerValue.TIMESTAMP;
     cardData.uid = firebase.auth().currentUser.uid;
 
@@ -20,4 +19,7 @@ export default {
   getCardsByUserId (userId) {
     return firebase.database().ref('cards').orderByChild('uid').equalTo(userId).once('value');
   },
+  getLatestCardFeed () {
+    return firebase.database().ref('cards').orderByChild('created').limitToLast(10).once('value');
+  }
 }

@@ -10,6 +10,10 @@
       <router-link to="/"><md-icon>home</md-icon></router-link>
     </md-button>
 
+    <md-button class="md-icon-button">
+      <router-link to="/feed"><md-icon>dashboard</md-icon></router-link>
+    </md-button>
+
     <h2 class="md-title" style="flex: 1">BF Card Creator</h2>
     <router-link to="/login" v-if="user.isAnonymous"><md-button class="md-raised">Login</md-button></router-link>
     <md-menu md-direction="bottom left" v-if="!user.isAnonymous" >

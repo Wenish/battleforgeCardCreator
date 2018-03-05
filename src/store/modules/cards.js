@@ -11,6 +11,14 @@ const state = {
 
 
 const getters = {
+    [getterNames.getCardsAsArray]: (state, getters) => {
+      var arr = [];
+      Object.entries(state.cards).forEach(([key, val]) => {
+          val.key = key
+          arr.push(val)
+      });
+      return arr
+    },
     [getterNames.getCardById]: (state, getters) => state.cards[state.activeCard],
     [getterNames.getCardsByUserId]: (state, getters) => {
       var uid = getters.getCurrentUser.uid;
@@ -24,6 +32,11 @@ const getters = {
           }
       });
       return cards
+    },
+    [getterNames.getCardsSortByCreated]: (state, getters) => {
+      var arr = getters.getCardsAsArray
+      console.log(arr)
+      return arr.sort((a, b) => a.created < b.created )
     }
 }
 
@@ -33,6 +46,10 @@ const actions = {
     database.ref('cards').on('value', function(snap){
       commit('UPDATE_CARDS', snap.val())
     })
+  },
+  async [actionTypes.GET_LATEST_CARD_FEED] ({commit, state}) {
+    var cards = await api.getLatestCardFeed()
+    commit('UPDATE_CARDS', cards.val())
   },
   async [actionTypes.GET_CARD_BY_ID]  ({commit, state}, cardId) {
     var cardData = await api.getCardById(cardId)

@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
-    <BfCard v-for="(card, key) in cards.cards"
-            :key="key"
+    <BfCard v-for="card in getCardsSortByCreated"
+            :key="card.key"
             :card-name="card.cardName"
             :cardImageUrl="card.cardImageUrl"
             :cardCost="card.cardCost"
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import BfCard from '@/components/BfCard'
 
 export default {
@@ -40,10 +40,10 @@ export default {
     BfCard
   },
   created() {
-    this.$store.dispatch('GET_CARDS')
+    this.$store.dispatch('GET_LATEST_CARD_FEED')
   },
   computed: {
-    ...mapState(['cards'])
+    ...mapGetters(['getCardsSortByCreated'])
   }
 }
 </script>
