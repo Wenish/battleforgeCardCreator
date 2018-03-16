@@ -58,7 +58,12 @@ const actions = {
   async [actionTypes.GET_CARDS_BY_USER_ID] ({commit, state, getters}, userId) {
     var dataSnap = await api.getCardsByUserId(userId);
     commit('UPDATE_CARDS', dataSnap.val());
-  }
+  },
+  async [actionTypes.DELETE_CARD] ({commit, state, getters}, cardId) {
+    var card = await api.deleteCard(cardId);
+    console.log(card);
+    commit('REMOVE_CARD', cardId);
+  },
 }
 
 const mutations = {
@@ -74,9 +79,15 @@ const mutations = {
       [card.key]: card.val(),
     }
   },
+  [mutationTypes.REMOVE_CARD] (state, cardId) {
+    state.cards = {
+      ...state.cards,
+    };
+    delete state.cards[cardId];
+  },
   [mutationTypes.SET_ACTIVE_CARD] (state, cardId) {
     state.activeCard = cardId
-  }
+  },
 }
 
 export default {

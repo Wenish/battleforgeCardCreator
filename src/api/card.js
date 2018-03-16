@@ -21,5 +21,8 @@ export default {
   },
   getLatestCardFeed () {
     return firebase.database().ref('cards').orderByChild('created').limitToLast(10).once('value');
-  }
+  },
+  deleteCard (cardId) {
+    return firebase.database().ref('/cards/' + cardId).remove();
+  },
 }

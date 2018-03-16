@@ -1,6 +1,5 @@
 <template>
   <div class="page-container">
-
       <BfCard v-if="getCardById != undefined || getCardById != null"
             :card-name="getCardById.cardName"
             :cardImageUrl="getCardById.cardImageUrl"
@@ -27,6 +26,10 @@
             :spellName3="getCardById.spellName3"
             :spellName4="getCardById.spellName4"
             />
+      <md-layout md-align="center" v-if="getCurrentUser.uid == getCardById.uid">
+          <!--<md-button class="md-raised md-primary">Edit Card</md-button>-->
+          <md-button class="md-raised md-warn" @click="deleteCard">Delete My Card</md-button>
+      </md-layout>
   </div>
 </template>
 
@@ -45,8 +48,14 @@ export default {
   },
   computed: {
     ...mapState(['route']),
-    ...mapGetters(['getCardById'])
+    ...mapGetters(['getCardById', 'getCurrentUser'])
   },
+  methods: {
+    deleteCard: function() {
+      this.$store.dispatch('DELETE_CARD', this.$store.getters.getCardById.key)
+      this.$router.push('/mycards')
+    }
+  }
 }
 </script>
 
