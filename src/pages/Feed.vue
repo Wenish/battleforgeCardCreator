@@ -26,6 +26,7 @@
             :spellName2="card.spellName2"
             :spellName3="card.spellName3"
             :spellName4="card.spellName4"
+            :cardUrl="`/card/${card.key}`"
             ></BfCard>
   </div>
 </template>

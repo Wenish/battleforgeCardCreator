@@ -7,9 +7,7 @@
       <div
         v-for="(card, key) in getCardsByUserId"
         :key="key">
-        <router-link :to="'/card/' + key">
         <BfCard
-
           :card-name="card.cardName"
           :cardImageUrl="card.cardImageUrl"
           :cardCost="card.cardCost"
@@ -34,8 +32,8 @@
           :spellName2="card.spellName2"
           :spellName3="card.spellName3"
           :spellName4="card.spellName4"
+          :cardUrl="`/card/${key}`"
         />
-        </router-link>
       </div>
     </div>
   </div>
@@ -61,7 +59,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .page-container{
-  max-width: 300px;
+  max-width: 500px;
   margin: auto;
 }
 </style>

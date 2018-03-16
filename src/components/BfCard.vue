@@ -2,7 +2,12 @@
   <div class="card-container">
     <div class="card-background"></div>
     <div class="card-img" :style="{ 'background-image': 'url(' + cardImageUrl + ')' }"></div>
-    <div class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
+    <div v-if="cardUrl">
+      <router-link :to="cardUrl">
+        <div class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
+      </router-link>
+    </div>
+    <div  v-if="!cardUrl" class="card-frame" :class="[orbType1, orbType2, orbType3, orbType4]"></div>
     <div class="card-entity-description">
       <span v-if="charge">{{charge}}</span><span v-if="entityCount > 1">x{{entityCount}}</span> {{entityName}}
     </div>
@@ -69,7 +74,8 @@ export default {
     'spellName1',
     'spellName2',
     'spellName3',
-    'spellName4'
+    'spellName4',
+    'cardUrl'
   ]
 }
 </script>
