@@ -1,5 +1,9 @@
 export default [
   {
+    value: '',
+    label: ''
+  },
+  {
     value: 'ms',
     label: 'Melee S'
   }, {

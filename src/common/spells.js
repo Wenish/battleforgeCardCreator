@@ -1,5 +1,9 @@
 export default [
   {
+    value: '',
+    label: ''
+  },
+  {
     value: 'active-special',
     label: 'Active Special'
   }, {

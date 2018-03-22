@@ -1,5 +1,9 @@
 export default [
   {
+    value: '',
+    label: ''
+  },
+  {
     value: 'amii_common',
     label: 'Amii Common'
   }, {
