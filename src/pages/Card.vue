@@ -26,7 +26,7 @@
             :spellName3="getCardById.spellName3"
             :spellName4="getCardById.spellName4"
             />
-      <md-layout md-align="center" v-if="getCurrentUser.uid == getCardById.uid">
+      <md-layout md-align="center" v-if="getCardById && getCurrentUser.uid == getCardById.uid">
           <!--<md-button class="md-raised md-primary">Edit Card</md-button>-->
           <md-button class="md-raised md-warn" @click="deleteCard">Delete My Card</md-button>
       </md-layout>
@@ -43,7 +43,6 @@ export default {
     BfCard
   },
   created () {
-    this.$store.commit('SET_ACTIVE_CARD', this.route.params.cardId)
     this.$store.dispatch('GET_CARD_BY_ID', this.route.params.cardId)
   },
   computed: {

@@ -42,7 +42,8 @@ const actions = {
     var cardData = {
       ...state
     }
-    await api.saveCard(cardData)
+    var result = await api.saveCard(cardData)
+    console.log(result)
     console.log('Card Saved')
   }
 }

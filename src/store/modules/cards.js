@@ -47,8 +47,11 @@ const actions = {
     commit('ADD_CARDS', cards);
   },
   async [actionTypes.GET_CARD_BY_ID]  ({commit, state}, cardId) {
-    var cardData = await api.getCardById(cardId)
-    commit('ADD_CARD', cardData)
+    var card = await api.getCardById(cardId)
+    if(card.exists){
+        commit('SET_ACTIVE_CARD', cardId)
+        commit('ADD_CARD', card)
+    }
   },
   async [actionTypes.GET_CARDS_BY_USER_ID] ({commit, state, getters}, userId) {
     var dataSnap = await api.getCardsByUserId(userId);
@@ -59,6 +62,7 @@ const actions = {
     commit('ADD_CARDS', cards);
   },
   async [actionTypes.DELETE_CARD] ({commit, state, getters}, cardId) {
+    console.log(cardId + 'before')
     var card = await api.deleteCard(cardId);
     console.log(card);
     commit('REMOVE_CARD', cardId);
