@@ -12,6 +12,7 @@ export const TOGGLE_SIDENAV = 'TOGGLE_SIDENAV'
 //cards
 export const UPDATE_CARDS = 'UPDATE_CARDS'
 export const ADD_CARD = 'ADD_CARD'
+export const ADD_CARDS = 'ADD_CARDS'
 export const REMOVE_CARD = 'REMOVE_CARD'
 export const SET_ACTIVE_CARD = 'SET_ACTIVE_CARD'
 

@@ -17,7 +17,7 @@ export default {
     return firebase.firestore().collection('cards').doc(cardId).get()
   },
   getCardsByUserId (userId) {
-    return firebase.database().ref('cards').orderByChild('uid').equalTo(userId).once('value');
+    return firebase.firestore().collection('cards').where('uid', '==', userId).get()
   },
   getLatestCardFeed () {
     return firebase.database().ref('cards').orderByChild('created').limitToLast(10).once('value');
