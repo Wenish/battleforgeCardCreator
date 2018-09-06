@@ -14,7 +14,6 @@ export default {
     return firebase.database().ref().update(updates);
   },
   getCardById (cardId) {
-     console.log(cardId)
     return firebase.firestore().collection('cards').doc(cardId).get()
   },
   getCardsByUserId (userId) {

@@ -53,9 +53,9 @@ const actions = {
   },
   async [actionTypes.GET_CARD_BY_ID]  ({commit, state}, cardId) {
     console.log(cardId);
-    var doc = await api.getCardById(cardId)
-    console.log(doc.data());
-    commit('ADD_CARD', doc.data())
+    var cardData = await api.getCardById(cardId)
+    console.log(cardData);
+    commit('ADD_CARD', cardData)
   },
   async [actionTypes.GET_CARDS_BY_USER_ID] ({commit, state, getters}, userId) {
     var dataSnap = await api.getCardsByUserId(userId);
@@ -78,7 +78,7 @@ const mutations = {
   [mutationTypes.ADD_CARD] (state, card) {
     state.cards = {
       ...state.cards,
-      [card.key]: card.val(),
+      [card.id]: card.data(),
     }
   },
   [mutationTypes.REMOVE_CARD] (state, cardId) {
