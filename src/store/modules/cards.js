@@ -20,22 +20,13 @@ const getters = {
       return arr
     },
     [getterNames.getCardById]: (state, getters) => state.cards[state.activeCard],
-    [getterNames.getCardsByUserId]: (state, getters) => {
-      var uid = getters.getCurrentUser.uid;
-      var cards = {};
-      Object.entries(state.cards).forEach(([key, val]) => {
-          if(val.uid == uid) {
-            cards = {
-              ...cards,
-              [key]: val,
-            }
-          }
-      });
+    [getterNames.getCardsFromCurrentUser]: (state, getters) => {
+      var currentUserUid = getters.getCurrentUser.uid;
+      var cards = getters.getCardsSortByCreated.filter(card => card.uid == currentUserUid)
       return cards
     },
     [getterNames.getCardsSortByCreated]: (state, getters) => {
       var arr = getters.getCardsAsArray
-      console.log(arr)
       return arr.sort((a, b) => a.created < b.created )
     }
 }
