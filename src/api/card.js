@@ -20,7 +20,7 @@ export default {
     return firebase.firestore().collection('cards').where('uid', '==', userId).get()
   },
   getLatestCardFeed () {
-    return firebase.database().ref('cards').orderByChild('created').limitToLast(10).once('value');
+    return firebase.firestore().collection('cards').orderBy('created', 'desc').limit(10).get()
   },
   deleteCard (cardId) {
     return firebase.database().ref('/cards/' + cardId).remove();

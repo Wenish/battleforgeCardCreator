@@ -48,8 +48,12 @@ const actions = {
     })
   },
   async [actionTypes.GET_LATEST_CARD_FEED] ({commit, state}) {
-    var cards = await api.getLatestCardFeed()
-    commit('UPDATE_CARDS', cards.val())
+    var dataSnap = await api.getLatestCardFeed()
+    var cards = {};
+    dataSnap.forEach((doc) => {
+        cards[doc.id] = doc.data();
+    })
+    commit('ADD_CARDS', cards);
   },
   async [actionTypes.GET_CARD_BY_ID]  ({commit, state}, cardId) {
     var cardData = await api.getCardById(cardId)
@@ -60,7 +64,6 @@ const actions = {
     var cards = {};
     dataSnap.forEach((doc) => {
         cards[doc.id] = doc.data();
-        console.log(doc)
     })
     commit('ADD_CARDS', cards);
   },
@@ -85,7 +88,6 @@ const mutations = {
     }
   },
   [mutationTypes.ADD_CARDS] (state, cards) {
-    console.log(cards)
     state.cards = {
       ...state.cards,
       ...cards
