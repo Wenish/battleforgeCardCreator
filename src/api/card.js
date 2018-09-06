@@ -14,7 +14,8 @@ export default {
     return firebase.database().ref().update(updates);
   },
   getCardById (cardId) {
-    return firebase.database().ref('/cards/' + cardId).once('value');
+     console.log(cardId)
+    return firebase.firestore().collection('cards').doc(cardId).get()
   },
   getCardsByUserId (userId) {
     return firebase.database().ref('cards').orderByChild('uid').equalTo(userId).once('value');

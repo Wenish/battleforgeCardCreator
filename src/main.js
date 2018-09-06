@@ -15,6 +15,7 @@ import { sync } from 'vuex-router-sync'
 Vue.config.productionTip = false
 
 Vue.prototype.$firebase = firebase.initializeApp(firebaseConfig)
+Vue.prototype.$firebase.firestore().settings({timestampsInSnapshots: true});
 Vue.prototype.$firebaseui = new firebaseui.auth.AuthUI(firebase.auth())
 Vue.use(VueMaterial)
 

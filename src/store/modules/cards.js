@@ -52,8 +52,10 @@ const actions = {
     commit('UPDATE_CARDS', cards.val())
   },
   async [actionTypes.GET_CARD_BY_ID]  ({commit, state}, cardId) {
-    var cardData = await api.getCardById(cardId)
-    commit('ADD_CARD', cardData)
+    console.log(cardId);
+    var doc = await api.getCardById(cardId)
+    console.log(doc.data());
+    commit('ADD_CARD', doc.data())
   },
   async [actionTypes.GET_CARDS_BY_USER_ID] ({commit, state, getters}, userId) {
     var dataSnap = await api.getCardsByUserId(userId);
