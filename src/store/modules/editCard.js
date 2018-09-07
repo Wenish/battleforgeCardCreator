@@ -39,7 +39,6 @@ const state = {
     spellName3: '',
     spellName4: ''
   }
-
 }
 
 const actions = {

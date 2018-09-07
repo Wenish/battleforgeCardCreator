@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     deleteCard: function() {
-      this.$store.dispatch('DELETE_CARD', this.$store.getters.getCardById.key)
+      this.$store.dispatch('DELETE_CARD', this.$store.getters.getActiveCardId)
       this.$router.push('/mycards')
     }
   }

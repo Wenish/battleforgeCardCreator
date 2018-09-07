@@ -22,6 +22,7 @@ const getters = {
       });
       return arr
     },
+    [getterNames.getActiveCardId]: (state, getters) => state.activeCard,
     [getterNames.getCardById]: (state, getters) => state.cards[state.activeCard],
     [getterNames.getCardsFromCurrentUser]: (state, getters) => {
       var currentUserUid = getters.getCurrentUser.uid;
@@ -65,9 +66,7 @@ const actions = {
     commit('ADD_CARDS', cards);
   },
   async [actionTypes.DELETE_CARD] ({commit, state, getters}, cardId) {
-    console.log(cardId + 'before')
     var card = await api.deleteCard(cardId);
-    console.log(card);
     commit('REMOVE_CARD', cardId);
   },
 }

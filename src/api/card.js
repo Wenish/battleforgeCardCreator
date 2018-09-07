@@ -16,7 +16,6 @@ export default {
     return firebase.firestore().collection('cards').orderBy('created', 'desc').limit(10).get()
   },
   deleteCard (cardId) {
-      console.log(cardId)
     return firebase.firestore().collection('cards').doc(cardId).delete()
   },
 }
