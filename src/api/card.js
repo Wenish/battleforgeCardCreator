@@ -5,9 +5,9 @@ export default {
     var data = {
       ...card.data
     }
-    data.created = firebase.firestore.FieldValue.serverTimestamp()
     data.uid = firebase.auth().currentUser.uid
     if (card.key == "") {
+      data.created = firebase.firestore.FieldValue.serverTimestamp()
       return firebase.firestore().collection('cards').add(data)
     } else {
       return firebase.firestore().collection('cards').doc(card.key).update(data)
