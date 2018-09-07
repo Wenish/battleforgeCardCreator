@@ -20,6 +20,12 @@ const router = new Router({
       component: CardEditor
     },
     {
+      path: '/editcard/:cardId',
+      name: 'EditCard',
+      component: CardEditor,
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/login',
       name: 'Login',
       component: Login,
