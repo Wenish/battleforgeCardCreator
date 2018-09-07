@@ -2,60 +2,54 @@ import api from '../../api/card'
 import * as actionTypes from '../actionTypes'
 import * as getterNames from '../getterNames'
 import * as mutationTypes from '../mutationTypes'
-
+import emptyCard from '@/common/emptyCard'
 const state = {
   key: '',
-  isSaved: false,
   data: {
-    cardName: '',
-    /*
-    cardImage: {
-      file: null,
-      name: '',
-      url: ''
-    },
-    */
-    cardImageUrl: '',
-    cardCost: 0,
-    orbType1: '',
-    orbType2: '',
-    orbType3: '',
-    orbType4: '',
-    charge: 0,
-    entityCount: 1,
-    entityName: '',
-    damageType: '',
-    damage: 0,
-    healthType: '',
-    health: 0,
-    editionSymbol: '',
-    affinity: '',
-    spellIcon1: '',
-    spellIcon2: '',
-    spellIcon3: '',
-    spellIcon4: '',
-    spellName1: '',
-    spellName2: '',
-    spellName3: '',
-    spellName4: ''
+    ...emptyCard
   }
 }
 
 const actions = {
+  async [actionTypes.GET_EDIT_CARD_BY_ID]({
+    commit,
+    state
+  }, cardId) {
+    commit('SET_EDIT_CARD_KEY', '')
+    commit('SET_EDIT_CARD_DATA', emptyCard)
+    var card = await api.getCardById(cardId)
+    if (card.exists) {
+      commit('SET_EDIT_CARD_KEY', cardId)
+      commit('SET_EDIT_CARD_DATA', card.data())
+    }
+  },
   async [actionTypes.SAVE_CARD]({
     commit,
     state
   }) {
-    var cardData = {
-      ...state.data
+    var result = await api.saveCard(state)
+    if (result) {
+      commit('SET_EDIT_CARD_KEY', result.id);
     }
-    var result = await api.saveCard(cardData)
-    console.log(result)
-    console.log('Card Saved')
   }
 }
 
 const mutations = {
+  [mutationTypes.RESET_EDIT_CARD](state, value) {
+    state.key = ''
+    state.data = {
+      ...state.data,
+      ...emptyCard
+    }
+  },
+  [mutationTypes.SET_EDIT_CARD_DATA](state, value) {
+    state.data = {
+      ...value
+    }
+  },
+  [mutationTypes.SET_EDIT_CARD_KEY](state, value) {
+    state.key = value
+  },
   [mutationTypes.UPDATE_CARDNAME](state, value) {
     state.data.cardName = value
   },

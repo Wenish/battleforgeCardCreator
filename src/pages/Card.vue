@@ -37,7 +37,7 @@ export default {
       this.$router.push('/mycards')
     },
     editCard: function() {
-        this.$router.push('/editcard/' + this.$store.getters.getActiveCardId)
+      this.$router.push('/editcard/' + this.$store.getters.getActiveCardId)
     },
   }
 }

@@ -30,7 +30,7 @@
           class="md-raised md-primary center"
           v-if="!user.isAnonymous"
           v-bind:disabled="!(!!editCard.data.cardName && !!editCard.data.cardImageUrl)"
-          @click="SAVE_CARD">Save Card</md-button>
+          @click="saveCard">Save Card</md-button>
         <router-link
           tag="md-button"
           to="/login?redirect=/"
@@ -44,7 +44,7 @@
 <script>
 import CardSettings from '@/components/CardSettings'
 import BfCard from '@/components/BfCard'
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'cardEditor',
@@ -52,11 +52,22 @@ export default {
     CardSettings,
     BfCard
   },
+  created() {
+      var cardId = this.$store.state.route.params.cardId
+      if(!cardId) {
+          return
+      }
+      this.$store.dispatch('GET_EDIT_CARD_BY_ID', cardId)
+  },
   computed: {
     ...mapState(['user', 'editCard']),
   },
   methods: {
-    ...mapActions(['SAVE_CARD']),
+      saveCard: async function() {
+          await this.$store.dispatch('SAVE_CARD')
+          this.$router.push('/card/' + this.$store.state.editCard.key)
+          this.$store.commit('RESET_EDIT_CARD')
+      },
   },
 }
 </script>
