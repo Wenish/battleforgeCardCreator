@@ -246,7 +246,7 @@ export default {
   computed: {
     cardName: {
       get () {
-        return this.$store.state.editCard.cardName
+        return this.$store.state.editCard.data.cardName
       },
       set (value) {
         this.$store.commit('UPDATE_CARDNAME', value)
@@ -261,7 +261,7 @@ export default {
     */
     cardImageUrl: {
       get () {
-        return this.$store.state.editCard.cardImageUrl
+        return this.$store.state.editCard.data.cardImageUrl
       },
       set (value) {
         this.$store.commit('UPDATE_CARDIMAGEURL', value)
@@ -269,7 +269,7 @@ export default {
     },
     cardCost: {
       get () {
-        return this.$store.state.editCard.cardCost
+        return this.$store.state.editCard.data.cardCost
       },
       set (value) {
         this.$store.commit('UPDATE_CARDCOST', value)
@@ -277,7 +277,7 @@ export default {
     },
     orbType1: {
       get () {
-        return this.$store.state.editCard.orbType1
+        return this.$store.state.editCard.data.orbType1
       },
       set (value) {
         this.$store.commit('UPDATE_ORBTYPE1', value)
@@ -285,7 +285,7 @@ export default {
     },
     orbType2: {
       get () {
-        return this.$store.state.editCard.orbType2
+        return this.$store.state.editCard.data.orbType2
       },
       set (value) {
         this.$store.commit('UPDATE_ORBTYPE2', value)
@@ -293,7 +293,7 @@ export default {
     },
     orbType3: {
       get () {
-        return this.$store.state.editCard.orbType3
+        return this.$store.state.editCard.data.orbType3
       },
       set (value) {
         this.$store.commit('UPDATE_ORBTYPE3', value)
@@ -301,7 +301,7 @@ export default {
     },
     orbType4: {
       get () {
-        return this.$store.state.editCard.orbType4
+        return this.$store.state.editCard.data.orbType4
       },
       set (value) {
         this.$store.commit('UPDATE_ORBTYPE4', value)
@@ -309,7 +309,7 @@ export default {
     },
     charge: {
       get () {
-        return this.$store.state.editCard.charge
+        return this.$store.state.editCard.data.charge
       },
       set (value) {
         this.$store.commit('UPDATE_CHARGE', value)
@@ -317,7 +317,7 @@ export default {
     },
     entityCount: {
       get () {
-        return this.$store.state.editCard.entityCount
+        return this.$store.state.editCard.data.entityCount
       },
       set (value) {
         this.$store.commit('UPDATE_ENTITYCOUNT', value)
@@ -325,7 +325,7 @@ export default {
     },
     entityName: {
       get () {
-        return this.$store.state.editCard.entityName
+        return this.$store.state.editCard.data.entityName
       },
       set (value) {
         this.$store.commit('UPDATE_ENTITYNAME', value)
@@ -333,7 +333,7 @@ export default {
     },
     damageType: {
       get () {
-        return this.$store.state.editCard.damageType
+        return this.$store.state.editCard.data.damageType
       },
       set (value) {
         this.$store.commit('UPDATE_DAMAGETYPE', value)
@@ -341,7 +341,7 @@ export default {
     },
     damage: {
       get () {
-        return this.$store.state.editCard.damage
+        return this.$store.state.editCard.data.damage
       },
       set (value) {
         this.$store.commit('UPDATE_DAMAGE', value)
@@ -349,7 +349,7 @@ export default {
     },
     healthType: {
       get () {
-        return this.$store.state.editCard.healthType
+        return this.$store.state.editCard.data.healthType
       },
       set (value) {
         this.$store.commit('UPDATE_HEALTHTYPE', value)
@@ -357,7 +357,7 @@ export default {
     },
     health: {
       get () {
-        return this.$store.state.editCard.health
+        return this.$store.state.editCard.data.health
       },
       set (value) {
         this.$store.commit('UPDATE_HEALTH', value)
@@ -365,7 +365,7 @@ export default {
     },
     editionSymbol: {
       get () {
-        return this.$store.state.editCard.editionSymbol
+        return this.$store.state.editCard.data.editionSymbol
       },
       set (value) {
         this.$store.commit('UPDATE_EDITIONSYMBOL', value)
@@ -373,7 +373,7 @@ export default {
     },
     affinity: {
       get () {
-        return this.$store.state.editCard.affinity
+        return this.$store.state.editCard.data.affinity
       },
       set (value) {
         this.$store.commit('UPDATE_AFFINITY', value)
@@ -381,7 +381,7 @@ export default {
     },
     spellIcon1: {
       get () {
-        return this.$store.state.editCard.spellIcon1
+        return this.$store.state.editCard.data.spellIcon1
       },
       set (value) {
         this.$store.commit('UPDATE_SPELLICON1', value)
@@ -389,7 +389,7 @@ export default {
     },
     spellIcon2: {
       get () {
-        return this.$store.state.editCard.spellIcon2
+        return this.$store.state.editCard.data.spellIcon2
       },
       set (value) {
         this.$store.commit('UPDATE_SPELLICON2', value)
@@ -397,7 +397,7 @@ export default {
     },
     spellIcon3: {
       get () {
-        return this.$store.state.editCard.spellIcon3
+        return this.$store.state.editCard.data.spellIcon3
       },
       set (value) {
         this.$store.commit('UPDATE_SPELLICON3', value)
@@ -405,7 +405,7 @@ export default {
     },
     spellIcon4: {
       get () {
-        return this.$store.state.editCard.spellIcon4
+        return this.$store.state.editCard.data.spellIcon4
       },
       set (value) {
         this.$store.commit('UPDATE_SPELLICON4', value)
@@ -413,7 +413,7 @@ export default {
     },
     spellName1: {
       get () {
-        return this.$store.state.editCard.spellName1
+        return this.$store.state.editCard.data.spellName1
       },
       set (value) {
         this.$store.commit('UPDATE_SPELLNAME1', value)
@@ -421,7 +421,7 @@ export default {
     },
     spellName2: {
       get () {
-        return this.$store.state.editCard.spellName2
+        return this.$store.state.editCard.data.spellName2
       },
       set (value) {
         this.$store.commit('UPDATE_SPELLNAME2', value)
@@ -429,7 +429,7 @@ export default {
     },
     spellName3: {
       get () {
-        return this.$store.state.editCard.spellName3
+        return this.$store.state.editCard.data.spellName3
       },
       set (value) {
         this.$store.commit('UPDATE_SPELLNAME3', value)
@@ -437,7 +437,7 @@ export default {
     },
     spellName4: {
       get () {
-        return this.$store.state.editCard.spellName4
+        return this.$store.state.editCard.data.spellName4
       },
       set (value) {
         this.$store.commit('UPDATE_SPELLNAME4', value)

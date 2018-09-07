@@ -13,9 +13,12 @@ const state = {
 const getters = {
     [getterNames.getCardsAsArray]: (state, getters) => {
       var arr = [];
-      Object.entries(state.cards).forEach(([key, val]) => {
-          val.key = key
-          arr.push(val)
+      Object.entries(state.cards).forEach((card) => {
+          var obj = {
+              ...card[1]
+          }
+          obj.key = card[0]
+          arr.push(obj)
       });
       return arr
     },
