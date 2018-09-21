@@ -1,14 +1,5 @@
 <template>
   <div class="page-container">
-    <md-card class="md-warn">
-        <md-card-content>
-            <h3 class="md-subheading">Information</h3>
-            Don't panic. All your Cards are save.<br/>
-            We are migrating to a new Database.<br/>
-            That's why your old cards are temporarly not avaiable.<br/>
-            <div class="md-subhead">07.09.2018</div>
-        </md-card-content>
-    </md-card>
     <div v-if="!getCardsFromCurrentUser">
     No Cardz RIP
     </div>
