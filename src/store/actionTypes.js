@@ -11,3 +11,4 @@ export const DELETE_CARD = 'DELETE_CARD'
 
 //editCard
 export const SAVE_CARD = 'SAVE_CARD'
+export const GET_EDIT_CARD_BY_ID = 'GET_EDIT_CARD_BY_ID'
