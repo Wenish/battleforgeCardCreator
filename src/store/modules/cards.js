@@ -13,29 +13,24 @@ const state = {
 const getters = {
     [getterNames.getCardsAsArray]: (state, getters) => {
       var arr = [];
-      Object.entries(state.cards).forEach(([key, val]) => {
-          val.key = key
-          arr.push(val)
+      Object.entries(state.cards).forEach((card) => {
+          var obj = {
+              ...card[1]
+          }
+          obj.key = card[0]
+          arr.push(obj)
       });
       return arr
     },
+    [getterNames.getActiveCardId]: (state, getters) => state.activeCard,
     [getterNames.getCardById]: (state, getters) => state.cards[state.activeCard],
-    [getterNames.getCardsByUserId]: (state, getters) => {
-      var uid = getters.getCurrentUser.uid;
-      var cards = {};
-      Object.entries(state.cards).forEach(([key, val]) => {
-          if(val.uid == uid) {
-            cards = {
-              ...cards,
-              [key]: val,
-            }
-          }
-      });
+    [getterNames.getCardsFromCurrentUser]: (state, getters) => {
+      var currentUserUid = getters.getCurrentUser.uid;
+      var cards = getters.getCardsSortByCreated.filter(card => card.uid == currentUserUid)
       return cards
     },
     [getterNames.getCardsSortByCreated]: (state, getters) => {
       var arr = getters.getCardsAsArray
-      console.log(arr)
       return arr.sort((a, b) => a.created < b.created )
     }
 }
@@ -48,20 +43,30 @@ const actions = {
     })
   },
   async [actionTypes.GET_LATEST_CARD_FEED] ({commit, state}) {
-    var cards = await api.getLatestCardFeed()
-    commit('UPDATE_CARDS', cards.val())
+    var dataSnap = await api.getLatestCardFeed()
+    var cards = {};
+    dataSnap.forEach((doc) => {
+        cards[doc.id] = doc.data();
+    })
+    commit('ADD_CARDS', cards);
   },
   async [actionTypes.GET_CARD_BY_ID]  ({commit, state}, cardId) {
-    var cardData = await api.getCardById(cardId)
-    commit('ADD_CARD', cardData)
+    var card = await api.getCardById(cardId)
+    if(card.exists){
+        commit('SET_ACTIVE_CARD', cardId)
+        commit('ADD_CARD', card)
+    }
   },
   async [actionTypes.GET_CARDS_BY_USER_ID] ({commit, state, getters}, userId) {
     var dataSnap = await api.getCardsByUserId(userId);
-    commit('UPDATE_CARDS', dataSnap.val());
+    var cards = {};
+    dataSnap.forEach((doc) => {
+        cards[doc.id] = doc.data();
+    })
+    commit('ADD_CARDS', cards);
   },
   async [actionTypes.DELETE_CARD] ({commit, state, getters}, cardId) {
     var card = await api.deleteCard(cardId);
-    console.log(card);
     commit('REMOVE_CARD', cardId);
   },
 }
@@ -76,7 +81,13 @@ const mutations = {
   [mutationTypes.ADD_CARD] (state, card) {
     state.cards = {
       ...state.cards,
-      [card.key]: card.val(),
+      [card.id]: card.data(),
+    }
+  },
+  [mutationTypes.ADD_CARDS] (state, cards) {
+    state.cards = {
+      ...state.cards,
+      ...cards
     }
   },
   [mutationTypes.REMOVE_CARD] (state, cardId) {
