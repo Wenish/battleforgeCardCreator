@@ -11,6 +11,7 @@ import firebaseConfig from './firebaseConfig'
 import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
+import VueMoment from 'vue-moment'
 
 Vue.config.productionTip = false
 
@@ -18,6 +19,7 @@ Vue.prototype.$firebase = firebase.initializeApp(firebaseConfig)
 Vue.prototype.$firebase.firestore().settings({timestampsInSnapshots: true});
 Vue.prototype.$firebaseui = new firebaseui.auth.AuthUI(firebase.auth())
 Vue.use(VueMaterial)
+Vue.use(VueMoment);
 
 Vue.material.registerTheme('default', {
   primary: 'blue',

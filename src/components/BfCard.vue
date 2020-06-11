@@ -106,9 +106,9 @@ export default {
     background: url('../assets/splatter-watercolor.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    width: 696px;
-    height: 408px;
-    left: -200px;
+    width: 549px;
+    height: 459px;
+    left: -123px;
     overflow: hidden;
     pointer-events: none;
   }
