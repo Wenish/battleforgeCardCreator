@@ -1,5 +1,8 @@
 <template>
-  <div class="text">Contribute to the <a href="https://github.com/Wenish/battleforgeCardCreator" target="_blank">project on Github</a> with a pull request.</div>
+  <div>
+    <div class="text">Contribute to the <a href="https://github.com/Wenish/battleforgeCardCreator" target="_blank">project on Github</a> with a pull request.</div>
+    <div class="text">Here you can also make any <a href="https://github.com/Wenish/battleforgeCardCreator/issues" target="_blank">feature request</a>.</div>
+  </div>
 </template>
 
 <script>
