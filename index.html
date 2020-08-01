@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BattleForge Card Creator</title>
+    <meta name="description" content="This is a BattleForge card creator app for desktop and mobile.">
     <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-16x16.png">
     <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
@@ -44,7 +45,7 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      if (document.location.hostname.indexOf("battleforge-card-creator.firebaseapp.com") != -1) {
+      if ((document.location.hostname.indexOf("battleforge-card-creator.firebaseapp.com") != -1) || (document.location.hostname.indexOf("bfcards.app") != -1)) {
         //Prod Track Key
         ga('create', 'UA-108121452-1', 'auto');
       } else {

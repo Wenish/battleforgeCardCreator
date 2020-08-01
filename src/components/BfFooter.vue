@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'footer',
+  name: 'bfFooter',
   data () {
     return {
       msg: 'This is the "Test" Component'

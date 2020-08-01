@@ -5,18 +5,18 @@
     <Navbar></Navbar>
     <Sidenav></Sidenav>
     <router-view :key="$route.fullPath"></router-view>
-    <Footer></Footer>
+    <BfFooter></BfFooter>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
 import Sidenav from '@/components/Sidenav'
-import Footer from '@/components/Footer'
+import BfFooter from '@/components/BfFooter'
 
 export default {
   name: 'app',
-  components: { Navbar, Sidenav, Footer },
+  components: { Navbar, Sidenav, BfFooter },
   created () {
     this.$store.dispatch('GET_FIREBASE_AUTH_CHANGE')
   }
