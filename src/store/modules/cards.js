@@ -51,9 +51,9 @@ const actions = {
     commit('ADD_CARDS', cards);
   },
   async [actionTypes.GET_CARD_BY_ID]  ({commit, state}, cardId) {
+    commit('SET_ACTIVE_CARD', cardId)
     var card = await api.getCardById(cardId)
     if(card.exists){
-        commit('SET_ACTIVE_CARD', cardId)
         commit('ADD_CARD', card)
     }
   },

@@ -11,7 +11,7 @@
     </md-button>
 
     <md-button class="md-icon-button">
-      <router-link to="/feed"><md-icon>dashboard</md-icon></router-link>
+      <router-link to="/feed"><md-icon>list</md-icon></router-link>
     </md-button>
 
     <h2 class="md-title" style="flex: 1">BF Card Creator</h2>
