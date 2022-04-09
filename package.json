@@ -14,7 +14,7 @@
     "dialog-polyfill": "^0.4.9",
     "firebase": "^5.4.2",
     "firebaseui": "^3.4.0",
-    "moment": "^2.26.0",
+    "moment": "^2.29.2",
     "vue": "^2.5.10",
     "vue-material": "^0.7.5",
     "vue-moment": "^4.1.0",
